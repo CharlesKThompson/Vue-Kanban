@@ -1,7 +1,7 @@
 let mongoose = require('mongoose')
 let Schema = mongoose.Schema
 let ObjectId = Schema.types.ObjectId
-let SchemaName = "User"
+let schemaName = "User"
 let bcrypt = require("bcryptjs")
 const SALT_FACTOR = 12
 
@@ -13,5 +13,7 @@ let schema = new Schema({
     created: { type: Number, required: true, default: Date.now() }
 
 })
+
+
 
 module.exports = mongoose.model(schemaName, schema)
