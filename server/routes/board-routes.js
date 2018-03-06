@@ -13,7 +13,7 @@ router.post("/boards", (req, res, next) => {
 })
 
 //Get a board
-router.get("/api/boards/:boardid", (req, res, next) => {
+router.get("/boards/:boardid", (req, res, next) => {
     Boards.findById(req.params.boardid)
         .then(board => {
             return res.send(board)
@@ -22,7 +22,7 @@ router.get("/api/boards/:boardid", (req, res, next) => {
 })
 
 //Put a board
-router.put("/api/boards/:boardid", (req, res, next) => {
+router.put("/boards/:boardid", (req, res, next) => {
     Boards.findByIdAndUpdate(req.params.boardid, req.body)
         .then(board => {
             res.send({ message: "Successfully updated post", data: board })
@@ -31,7 +31,7 @@ router.put("/api/boards/:boardid", (req, res, next) => {
 })
 
 //Delet a board
-router.delete("/api/boards/:boardid", (req, res, next) => {
+router.delete("/boards/:boardid", (req, res, next) => {
     Boards.findByIdAndRemove({ creatorId: req.session.uid, _uid: req.params.boardid })
         .then(post => {
             if (!Boards) {
