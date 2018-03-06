@@ -1,20 +1,21 @@
 <template>
 <div class="login">
 <navbar></navbar>
-
-<div class="login-form"> 
-    <form @submit="login">
-        <input v-model="loginForm.email" type=“text” name=“email” placeholder=bob@bob.com id=“”>
-        <input v-model="loginForm.password" type=“text” name=“password” placeholder=password id=“”>
-        <span>
-            <button type="submit" @submit="login" class="btn btn-success">Login</button>
-        </span>
-    </form>
- </div>
+<div class="row login-credentials">
+    <div class="col-sm-12 login-form"> 
+        <form @submit="login">
+            <input v-model="loginForm.email" type=“text” name=“email” placeholder=bob@bob.com id=“”>
+            <input v-model="loginForm.password" type=“text” name=“password” placeholder=password id=“”>
+            <div class="col-sm-12 login-button">
+                <button type="submit" @submit="login" class="btn btn-success">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">
-        Launch demo modal
+<button type="button" class="btn btn-success " data-toggle="modal" data-target="#registerModal">
+        Register
       </button>
       
       <!-- Modal -->
@@ -40,14 +41,12 @@
                         </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary">Submit</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
       </div>
-
-
 </div>
 </template>
 
@@ -61,6 +60,9 @@
         components: {
             Navbar,
         },
+        methods: {
+
+        }
     }
 </script>
 
