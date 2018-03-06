@@ -1,5 +1,5 @@
 let session = require("express-session")
-let mongoStore = require("connect-mongodb-session")(expressSession)
+let mongoStore = require("connect-mongodb-session")(session)
 
 let store = new mongoStore({
     uri:'mongodb://test:test@ds012538.mlab.com:12538/vue-kanban',
