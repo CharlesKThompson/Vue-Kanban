@@ -24,15 +24,6 @@ router.get("/boards/:boardid", (req, res, next) => {
         .catch(next)
 })
 
-//Get all boards
-router.get("/boards", (req, res, next) => {
-    Boards.findById(req.params.boardid)
-        .then(board => {
-            return res.send(board)
-        })
-        .catch(next)
-})
-
 //Put a board
 router.put("/boards/:boardid", (req, res, next) => {
     Boards.findByIdAndUpdate(req.params.boardid, req.body)
