@@ -1,5 +1,8 @@
 var router = require("express").Router();
 var Boards = require("../models/board");
+var Lists = require("../models/list")
+var Tasks = require("../models/task")
+var Comments = require("../models/comment") 
 
 //Create a board
 router.post("/boards", (req, res, next) => {
@@ -44,5 +47,130 @@ router.delete("/boards/:boardid", (req, res, next) => {
 })
     
 
+//Create a list
+router.post("board/:boardid/lists", (req, res, next) => {
+    req.body.creatorId = req.session.uid
+
+    Lists.create(req.body)
+        .then(list => {
+            res.send(list)
+        })
+        .catch(next)
+})
+
+//Get a list
+router.get("board/:boardid/lists/:listid", (req, res, next) => {
+    Lists.findById(req.params.listid)
+        .then(list => {
+            return res.send(list)
+        })
+        .catch(next)
+})
+
+//Put a list
+router.put("board/:boardid/lists/:listid", (req, res, next) => {
+    Lists.findByIdAndUpdate(req.params.listid, req.body)
+        .then(list => {
+            res.send({ message: "Successfully updated list", data: list })
+        })
+        .catch(next)
+})
+
+//Delete a list
+router.delete("board/:boardid/lists/:listid", (req, res, next) => {
+    Lists.findOneAndRemove({ creatorId: req.session.uid, _uid: req.params.listid })
+        .then(list => {
+            if (!Lists) {
+                res.status(401).send({ error: "Not authorized to remove list" })
+            } else {
+                res.send({ message: "Successfully deleted list" })
+            }
+        })
+        .catch(next)
+})
+
+//Create a task
+router.post("/tasks", (req, res, next) => {
+    req.body.creatorId = req.session.uid
+
+    Tasks.create(req.body)
+        .then(task => {
+            res.send(task)
+        })
+        .catch(next)
+})
+
+//Get a task
+router.get("/tasks/:taskid", (req, res, next) => {
+    Tasks.findById(req.params.taskid)
+        .then(task => {
+            return res.send(task)
+        })
+        .catch(next)
+})
+
+//Put a task
+router.put("/tasks/:taskid", (req, res, next) => {
+    Tasks.findByIdAndUpdate(req.params.taskid, req.body)
+        .then(task => {
+            res.send({ message: "Successfully updated task", data: task })
+        })
+        .catch(next)
+})
+
+//Delete a task
+router.delete("/tasks/:taskid", (req, res, next) => {
+    Tasks.findOneAndRemove({ creatorId: req.session.uid, _uid: req.params.taskid })
+        .then(task => {
+            if (!Tasks) {
+                res.status(401).send({ error: "Not authorized to remove task" })
+            } else {
+                res.send({ message: "Successfully deleted task" })
+            }
+        })
+        .catch(next)
+})
+
+//Create a comment
+router.post("/comments", (req, res, next) => {
+    req.body.creatorId = req.session.uid
+
+    Comments.create(req.body)
+        .then(comment => {
+            res.send(comment)
+        })
+        .catch(next)
+})
+
+//Get a comment
+router.get("/comments/:commentid", (req, res, next) => {
+    Comments.findById(req.params.commentid)
+        .then(comment => {
+            return res.send(comment)
+        })
+        .catch(next)
+})
+
+//Put a comment
+router.put("/comments/:commentid", (req, res, next) => {
+    Comments.findByIdAndUpdate(req.params.commentid, req.body)
+        .then(comment => {
+            res.send({ message: "Successfully updated comment", data: comment })
+        })
+        .catch(next)
+})
+
+//Delete a comment
+router.delete("/comments/:commentid", (req, res, next) => {
+    Comments.findOneAndRemove({ creatorId: req.session.uid, _uid: req.params.commentid })
+        .then(comment => {
+            if (!Comments) {
+                res.status(401).send({ error: "Not authorized to remove comment" })
+            } else {
+                res.send({ message: "Successfully deleted comment" })
+            }
+        })
+        .catch(next)
+})
 
 module.exports = {router}
