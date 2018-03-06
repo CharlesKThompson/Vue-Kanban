@@ -9,8 +9,8 @@ var port = 3000
 var authRoutes = require("./auth/auth")
 var session = require("./auth/session")
 
-// var userRoutes = require("./routes/users")
-// var boardRoutes = require("./routes/boards") //come back to this
+var userRoutes = require("./routes/user-routes")
+var boardRoutes = require("./routes/board-routes") //come back to this
 server.use(cors())
 server.use(session)
 server.use(bp.json())
@@ -19,7 +19,8 @@ server.use(bp.urlencoded({
 }))
 server.use(authRoutes)
 
-// server.use("/api", userRoutes.router)
+server.use("/api", userRoutes.router)
+server.use("/api", boardRoutes.router)
 
 server.use('*', (err, req, res, next) => {
     res.status(400).send(err)
