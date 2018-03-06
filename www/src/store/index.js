@@ -44,6 +44,17 @@ var api = axios.create({
                 commit('handleError', err)
             })
          },
+         createUser ({commit, dispatch}, payload) {
+             auth.post('createUser', payload)
+            .then(user => {
+                commit('setUser', user.data)
+                router.push({name: 'Home'})
+                console.log(user.data)
+            })
+            .catch(err => {
+                commit('handleError', err)
+            })
+         }
      }
  })
 

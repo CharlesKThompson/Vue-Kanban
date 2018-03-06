@@ -1,53 +1,49 @@
 <template>
-<div class="login">
-<navbar></navbar>
-<div class="row login-credentials">
-    <div class="col-sm-12 login-form"> 
-        <form @submit="login">
-            <input v-model="loginForm.email" type=“text” name=“email” placeholder=bob@bob.com id=“”>
-            <input v-model="loginForm.password" type=“text” name=“password” placeholder=password id=“”>
-            <div class="col-sm-12 login-button">
-                <button type="submit" @submit="login" class="btn btn-success">Login</button>
+    <div class="login">
+        <navbar></navbar>
+        <div class="row login-credentials">
+            <div class="col-sm-12 login-form">
+                <form @submit="login">
+                    <input v-model="loginForm.email" type=“text” name=“email” placeholder=bob@bob.com id=“”>
+                    <input v-model="loginForm.password" type=“text” name=“password” placeholder=password id=“”>
+                    <div class="col-sm-12 login-button">
+                        <button type="submit" @submit="login" class="btn btn-success">Login</button>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-</div>
+        </div>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-success " data-toggle="modal" data-target="#registerModal">
-        Register
-      </button>
-      
-      <!-- Modal -->
-      <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="registerModalLabel">Register</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                    <form @submit="createUser">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#registerModal">
+            Register
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registerModalLabel">Register</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form @submit="createUser">
                             <input v-model="registerForm.name" type=“text” name=“name” placeholder=name id=“”>
                             <input v-model="registerForm.email" type=“text” name=“email” placeholder=bob@bob.com id=“”>
                             <input v-model="registerForm.password" type=“text” name=“password” placeholder=password id=“”>
-                            <input v-model="registerForm.photoUrl" type=“text” name=“photoUrl” placeholder=ImageURL id=“”>
+                            <input v-model="registerForm.profilePic" type=“text” name=“profilePic” placeholder=ImageURL id=“”>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" @submit="createUser" class="btn btn-success">Register</button>
                             </div>
                         </form>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Submit</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
         </div>
-      </div>
-</div>
+    </div>
 </template>
 
 <script>
@@ -55,19 +51,34 @@
     export default {
         name: 'Login',
         data() {
-            return {}
+            return {
+                loginForm: {
+                    email: '',
+                    password: ''
+                },
+
+                registerForm: {
+                    name: '',
+                    email: '',
+                    password: '',
+                    profilePic: ''
+                }
+            }
         },
         components: {
             Navbar,
         },
         methods: {
-            login(){
+            login() {
                 this.$store.dispatch('login', this.user)
+            },
+            createUser(){
+                debugger
+                this.$store.dispatch('createUser', this.user)               
             }
         }
     }
 </script>
 
 <style>
-
 </style>
