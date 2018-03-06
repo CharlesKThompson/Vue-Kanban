@@ -57,7 +57,7 @@ router.delete("/boards/:boardid", (req, res, next) => {
     
 
 //Create a list
-router.post("boards/:boardid/lists", (req, res, next) => {
+router.post("/boards/:boardid/lists", (req, res, next) => {
     req.body.creatorId = req.session.uid
 
     Lists.create(req.body)
@@ -68,7 +68,7 @@ router.post("boards/:boardid/lists", (req, res, next) => {
 })
 
 //Get a list
-router.get("boards/:boardid/lists/:listid", (req, res, next) => {
+router.get("/boards/:boardid/lists/:listid", (req, res, next) => {
     Lists.findById(req.params.listid)
         .then(list => {
             return res.send(list)
@@ -77,7 +77,7 @@ router.get("boards/:boardid/lists/:listid", (req, res, next) => {
 })
 
 //Put a list
-router.put("boards/:boardid/lists/:listid", (req, res, next) => {
+router.put("/boards/:boardid/lists/:listid", (req, res, next) => {
     Lists.findByIdAndUpdate(req.params.listid, req.body)
         .then(list => {
             res.send({ message: "Successfully updated list", data: list })
@@ -86,7 +86,7 @@ router.put("boards/:boardid/lists/:listid", (req, res, next) => {
 })
 
 //Delete a list
-router.delete("boards/:boardid/lists/:listid", (req, res, next) => {
+router.delete("/boards/:boardid/lists/:listid", (req, res, next) => {
     Lists.findOneAndRemove({ creatorId: req.session.uid, _uid: req.params.listid })
         .then(list => {
             if (!Lists) {
@@ -99,7 +99,7 @@ router.delete("boards/:boardid/lists/:listid", (req, res, next) => {
 })
 
 //Create a task
-router.post("boards/:boardid/lists/:listid/tasks", (req, res, next) => {
+router.post("/boards/:boardid/lists/:listid/tasks", (req, res, next) => {
     req.body.creatorId = req.session.uid
 
     Tasks.create(req.body)
@@ -110,7 +110,7 @@ router.post("boards/:boardid/lists/:listid/tasks", (req, res, next) => {
 })
 
 //Get a task
-router.get("boards/:boardid/lists/:listid/tasks/:taskid", (req, res, next) => {
+router.get("/boards/:boardid/lists/:listid/tasks/:taskid", (req, res, next) => {
     Tasks.findById(req.params.taskid)
         .then(task => {
             return res.send(task)
@@ -119,7 +119,7 @@ router.get("boards/:boardid/lists/:listid/tasks/:taskid", (req, res, next) => {
 })
 
 //Put a task
-router.put("boards/:boardid/lists/:listid/tasks/:taskid", (req, res, next) => {
+router.put("/boards/:boardid/lists/:listid/tasks/:taskid", (req, res, next) => {
     Tasks.findByIdAndUpdate(req.params.taskid, req.body)
         .then(task => {
             res.send({ message: "Successfully updated task", data: task })
@@ -128,7 +128,7 @@ router.put("boards/:boardid/lists/:listid/tasks/:taskid", (req, res, next) => {
 })
 
 //Delete a task
-router.delete("boards/:boardid/lists/:listid/tasks/:taskid", (req, res, next) => {
+router.delete("/boards/:boardid/lists/:listid/tasks/:taskid", (req, res, next) => {
     Tasks.findOneAndRemove({ creatorId: req.session.uid, _uid: req.params.taskid })
         .then(task => {
             if (!Tasks) {
@@ -141,7 +141,7 @@ router.delete("boards/:boardid/lists/:listid/tasks/:taskid", (req, res, next) =>
 })
 
 //Create a comment
-router.post("boards/:boardid/lists/:listid/task/:taskid/comments", (req, res, next) => {
+router.post("/boards/:boardid/lists/:listid/task/:taskid/comments", (req, res, next) => {
     req.body.creatorId = req.session.uid
 
     Comments.create(req.body)
@@ -152,7 +152,7 @@ router.post("boards/:boardid/lists/:listid/task/:taskid/comments", (req, res, ne
 })
 
 //Get a comment
-router.get("boards/:boardid/lists/:listid/tasks/:taskid/comments/:commentid", (req, res, next) => {
+router.get("/boards/:boardid/lists/:listid/tasks/:taskid/comments/:commentid", (req, res, next) => {
     Comments.findById(req.params.commentid)
         .then(comment => {
             return res.send(comment)
@@ -161,7 +161,7 @@ router.get("boards/:boardid/lists/:listid/tasks/:taskid/comments/:commentid", (r
 })
 
 //Put a comment
-router.put("boards/:boardid/lists/:listid/tasks/:taskid/comments/:commentid", (req, res, next) => {
+router.put("/boards/:boardid/lists/:listid/tasks/:taskid/comments/:commentid", (req, res, next) => {
     Comments.findByIdAndUpdate(req.params.commentid, req.body)
         .then(comment => {
             res.send({ message: "Successfully updated comment", data: comment })
@@ -170,7 +170,7 @@ router.put("boards/:boardid/lists/:listid/tasks/:taskid/comments/:commentid", (r
 })
 
 //Delete a comment
-router.delete("boards/:boardid/lists/:listid/taks/:taskid/comments/:commentid", (req, res, next) => {
+router.delete("/boards/:boardid/lists/:listid/taks/:taskid/comments/:commentid", (req, res, next) => {
     Comments.findOneAndRemove({ creatorId: req.session.uid, _uid: req.params.commentid })
         .then(comment => {
             if (!Comments) {
