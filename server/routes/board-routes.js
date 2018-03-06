@@ -2,7 +2,7 @@ var router = require("express").Router();
 var Boards = require("../models/board");
 
 //Creat a board
-router.post("/api/boards/", (req, res, next) => {
+router.post("/boards", (req, res, next) => {
     req.body.creatorId = req.session.uid
 
     Boards.create(req.body)
@@ -43,4 +43,6 @@ router.delete("/api/boards/:boardid", (req, res, next) => {
         .catch(next)
 })
     
+
+
 module.exports = {router}
