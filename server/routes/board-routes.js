@@ -37,14 +37,10 @@ router.delete("/api/boards/:boardid", (req, res, next) => {
             if (!Boards) {
                 res.status(401).send({ error: "Not authorized to remove board" })
             } else {
-                res.send({message: "Successfully deleted post"})
-                }
-                    .catch(next)
-                )
+                res.send({ message: "Successfully deleted post" })
             }
         })
-    
-
-
-
+        .catch(next)
 })
+    
+module.exports = {router}
