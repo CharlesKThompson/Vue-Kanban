@@ -32,7 +32,7 @@ router.put("/boards/:boardid", (req, res, next) => {
 
 //Delete a board
 router.delete("/boards/:boardid", (req, res, next) => {
-    Boards.findByIdAndRemove({ creatorId: req.session.uid, _uid: req.params.boardid })
+    Boards.findOneAndRemove({ creatorId: req.session.uid, _uid: req.params.boardid })
         .then(board => {
             if (!Boards) {
                 res.status(401).send({ error: "Not authorized to remove board" })
