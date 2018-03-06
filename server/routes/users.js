@@ -1,3 +1,4 @@
+//THIS ROUTE IS PART OF STRETCH GOALS, PART OF IMPLEMENTING COLLABORATIVE USERS
 let router = require("express").Router()
 let Users = require("../models/user")
 let Boards = require("../models/board")
