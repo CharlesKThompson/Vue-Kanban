@@ -141,7 +141,7 @@ router.delete("/boards/:boardid/lists/:listid/tasks/:taskid", (req, res, next) =
 })
 
 //Create a comment
-router.post("/boards/:boardid/lists/:listid/task/:taskid/comments", (req, res, next) => {
+router.post("/boards/:boardid/lists/:listid/tasks/:taskid/comments", (req, res, next) => {
     req.body.creatorId = req.session.uid
 
     Comments.create(req.body)
@@ -170,7 +170,7 @@ router.put("/boards/:boardid/lists/:listid/tasks/:taskid/comments/:commentid", (
 })
 
 //Delete a comment
-router.delete("/boards/:boardid/lists/:listid/taks/:taskid/comments/:commentid", (req, res, next) => {
+router.delete("/boards/:boardid/lists/:listid/tasks/:taskid/comments/:commentid", (req, res, next) => {
     Comments.findOneAndRemove({ creatorId: req.session.uid, _uid: req.params.commentid })
         .then(comment => {
             if (!Comments) {
