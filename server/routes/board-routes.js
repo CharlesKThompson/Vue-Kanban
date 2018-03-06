@@ -1,7 +1,7 @@
 var router = require("express").Router();
 var Boards = require("../models/board");
 
-//Creat a board
+//Create a board
 router.post("/boards", (req, res, next) => {
     req.body.creatorId = req.session.uid
 
@@ -25,19 +25,19 @@ router.get("/boards/:boardid", (req, res, next) => {
 router.put("/boards/:boardid", (req, res, next) => {
     Boards.findByIdAndUpdate(req.params.boardid, req.body)
         .then(board => {
-            res.send({ message: "Successfully updated post", data: board })
+            res.send({ message: "Successfully updated board", data: board })
         })
         .catch(next)
 })
 
-//Delet a board
+//Delete a board
 router.delete("/boards/:boardid", (req, res, next) => {
     Boards.findByIdAndRemove({ creatorId: req.session.uid, _uid: req.params.boardid })
-        .then(post => {
+        .then(board => {
             if (!Boards) {
                 res.status(401).send({ error: "Not authorized to remove board" })
             } else {
-                res.send({ message: "Successfully deleted post" })
+                res.send({ message: "Successfully deleted board" })
             }
         })
         .catch(next)
