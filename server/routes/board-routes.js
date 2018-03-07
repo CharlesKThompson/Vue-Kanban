@@ -24,6 +24,14 @@ router.get("/boards/:boardid", (req, res, next) => {
         .catch(next)
 })
 
+router.get("/boards/", (req, res, next) => {
+    Boards.find({creatorId: req.session.uid})
+        .then(boards => {
+            return res.send(boards)
+        })
+        .catch(next)
+})
+
 //Put a board
 router.put("/boards/:boardid", (req, res, next) => {
     Boards.findByIdAndUpdate(req.params.boardid, req.body)
