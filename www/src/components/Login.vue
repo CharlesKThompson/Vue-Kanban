@@ -70,11 +70,11 @@
         },
         methods: {
             login() {
-                this.$store.dispatch('login', this.user)
+                debugger
+                this.$store.dispatch('login', this.loginForm)
             },
             createUser(){
-                debugger
-                this.$store.dispatch('createUser', this.user)               
+                this.$store.dispatch('createUser', this.registerForm)               
             }
         }
     }

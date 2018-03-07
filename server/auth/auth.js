@@ -3,7 +3,7 @@ var Users = require("../models/user");
 
 var errorMessage = { error: "Invalid Auth" };
 
-router.post("/auth/register", (req, res) => {
+router.post("/auth/createUser", (req, res) => {
   // @ts-ignore
   console.log("reg user")
   req.body.password = Users.generateHash(req.body.password);

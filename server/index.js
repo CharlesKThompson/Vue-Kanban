@@ -11,7 +11,17 @@ var session = require("./auth/session")
 
 var userRoutes = require("./routes/user-routes")
 var boardRoutes = require("./routes/board-routes") //come back to this
-server.use(cors())
+
+var whitelist = ['http://localhost:8080'];
+var corsOptions = {
+	origin: function (origin, callback) {
+		var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+		callback(null, originIsWhitelisted);
+	},
+	credentials: true
+};
+
+server.use(cors(corsOptions));
 server.use(session)
 server.use(bp.json())
 server.use(bp.urlencoded({

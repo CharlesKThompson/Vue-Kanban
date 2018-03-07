@@ -1,7 +1,7 @@
 import vue from 'vue'
 import axios from 'axios'
 import vuex from 'vuex'
-import router from 'router'
+import router from '../router'
 
 var api = axios.create({
     baseURL: "//localhost:3000/api/",
