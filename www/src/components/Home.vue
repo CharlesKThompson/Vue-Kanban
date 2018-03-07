@@ -38,6 +38,9 @@
             },
             updateBoard(board) {
                 this.$store.dipatch('updateBoard', board)
+            },
+            logout() {
+                this.$store.dispatch('logout')
             }
         },
         computed: {

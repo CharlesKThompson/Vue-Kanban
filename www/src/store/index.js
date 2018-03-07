@@ -29,12 +29,7 @@ var store = new vuex.Store({
     mutations: {
         setUser(state, user) {
             state.user = user
-        },
-        //come back to this make real logout options
-        // logout(state) {
-        //     state.user = {}
-        // }
-
+        }
     },
     actions: {
         //Login and Register actions ===================================================================
@@ -61,10 +56,10 @@ var store = new vuex.Store({
                 })
         },
         logout({ commit, dispatch }, payload) {
-            auth.delete('logout', payload)
+            auth.delete('logout')
                 .then(res => {
-                    commit('logout', user.data)
-                    router.push({ name: 'Login' })
+                    commit('setUser', {})
+                    // router.push({ name: 'Login' })
                     console.log(res)
                 })
                 .catch(err => {
