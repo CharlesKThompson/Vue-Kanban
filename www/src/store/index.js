@@ -38,10 +38,8 @@ var store = new vuex.Store({
     actions: {
         //Login and Register actions ===================================================================
         login({ commit, dispatch }, payload) {
-            debugger
             auth.post('login', payload)
                 .then(user => {
-                    debugger
                     commit('setUser', user.data)
                     router.push({ name: 'Home' })
                     console.log(user.data)
