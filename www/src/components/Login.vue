@@ -3,11 +3,11 @@
         <navbar></navbar>
         <div class="row login-credentials">
             <div class="col-sm-12 login-form">
-                <form @submit="login">
+                <form @submit.prevent="login">
                     <input v-model="loginForm.email" type=“text” name=“email” placeholder=email id=“”>
                     <input v-model="loginForm.password" type=“text” name=“password” placeholder=password id=“”>
                     <div class="col-sm-12 login-button">
-                        <button type="submit" @submit="login" class="btn btn-success">Login</button>
+                        <button type="submit" class="btn btn-success">Login</button>
                     </div>
                 </form>
             </div>
