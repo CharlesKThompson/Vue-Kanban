@@ -29,10 +29,38 @@ var store = new vuex.Store({
     mutations: {
         setUser(state, user) {
             state.user = user
-        }
+        },
+        // TO ADD ONE NEW BOARD
+        setBoard(state, payload) {
+            state.boards.unshift(payload)
+        },
+        //TO SET ALL BOARDS FOR USER
+        setBoards(state, payload) {
+            state.boards = payload
+        },
     },
     actions: {
         //Login and Register actions ===================================================================
+        createBoard({ commit, dispatch }, payload) {
+            api.post("home", payload)
+                .then(results => {
+                    commit("setBoard", results.data)
+                })
+        },
+        getBoards({ commit, dispatch }, payload) {
+            api.get("home")
+                .then(result => {
+                    // console.log(result)
+                    commit("setBoards", result.data)
+                })
+                .catch(err => { console.log(err) })
+        },
+        deleteBoard({ commit, dispatch }, payload) {
+            api.delete("boards/" + payload._id)
+                .then(result => {
+                    dispatch("getBoards", payload)
+                })
+        },
         login({ commit, dispatch }, payload) {
             auth.post('login', payload)
                 .then(user => {
