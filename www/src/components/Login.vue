@@ -4,7 +4,7 @@
         <div class="row login-credentials">
             <div class="col-sm-12 login-form">
                 <form @submit="login">
-                    <input v-model="loginForm.email" type=“text” name=“email” placeholder=bob@bob.com id=“”>
+                    <input v-model="loginForm.email" type=“text” name=“email” placeholder=email id=“”>
                     <input v-model="loginForm.password" type=“text” name=“password” placeholder=password id=“”>
                     <div class="col-sm-12 login-button">
                         <button type="submit" @submit="login" class="btn btn-success">Login</button>
@@ -72,12 +72,16 @@
             login() {
                 this.$store.dispatch('login', this.loginForm)
             },
-            createUser(){
-                this.$store.dispatch('createUser', this.registerForm)               
+            createUser() {
+                this.$store.dispatch('createUser', this.registerForm)
+            },
+            logout() {
+                this.$store.dispatch('logout', this.user)
             }
         }
     }
 </script>
 
 <style>
+
 </style>
