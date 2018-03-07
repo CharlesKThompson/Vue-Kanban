@@ -24,7 +24,7 @@ router.get("/boards/:boardid", (req, res, next) => {
         .catch(next)
 })
 
-router.get("/boards/", (req, res, next) => {
+router.get("/boards", (req, res, next) => {
     Boards.find({creatorId: req.session.uid})
         .then(boards => {
             return res.send(boards)

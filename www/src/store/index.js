@@ -42,16 +42,16 @@ var store = new vuex.Store({
     actions: {
         //Login and Register actions ===================================================================
         addBoard({ commit, dispatch }, payload) {
-            api.post("home", payload)
+            api.post("boards/", payload)
                 .then(results => {
-                    commit("setBoard", results.data)
+                    dispatch("getBoards", results.data)
                 })
         },
         getBoards({ commit, dispatch }, payload) {
-            api.get("home")
+            api.get("boards/")
                 .then(result => {
-                    // console.log(result)
-                    commit("setBoards", result.data)
+                 console.log(result)
+                    commit("getBoards", result.data)
                 })
                 .catch(err => { console.log(err) })
         },
