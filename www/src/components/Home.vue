@@ -9,9 +9,7 @@
     export default {
         name: 'Home',
         data() {
-            return {
-                msg: 'Welcome To The Jungle!'
-            }
+            return {}
         },
         components: {
             Navbar,
