@@ -24,7 +24,7 @@
         },
         components: {
             Navbar,
-            board
+            Board
         },
         methods: {
             getBoards() {
