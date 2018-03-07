@@ -30,9 +30,10 @@ var store = new vuex.Store({
         setUser(state, user) {
             state.user = user
         },
-        logout(state) {
-            state.user = {}
-        }
+        //come back to this make real logout options
+        // logout(state) {
+        //     state.user = {}
+        // }
 
     },
     actions: {
