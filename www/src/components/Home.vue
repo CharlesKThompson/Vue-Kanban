@@ -1,6 +1,13 @@
 <template>
   <div class="home">
-    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3" v-for = "board in boards">
+
+            </div>
+            <button type="button" class="btn btn-danger" @click='logout'>Logout</button>
+        </div>
+    </div>
   </div>
 </template>
 

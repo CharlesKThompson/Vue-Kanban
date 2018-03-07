@@ -75,6 +75,9 @@
             },
             createUser() {
                 this.$store.dispatch('createUser', this.registerForm)
+            },
+            logout() {
+                this.$store.dispatch('logout', this.user)
             }
         }
     }
