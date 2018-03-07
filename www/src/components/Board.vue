@@ -20,17 +20,18 @@
         computed: {
             lists() {
                 return this.$store.state.lists[this.board._id] || []
-            },
-            activeBoard() {
-                return this.$store.state.activeBoard
             }
+            // ,
+            // activeBoard() {
+            //     return this.$store.state.activeBoard
+            // }
         },
         methods: {
             addList(list) {
                 this.$store.dispatch('addList', list)
             },
-            removeBoard(board) {
-                this.$store.dispatch('removeBoard', board)
+            deleteBoard(board) {
+                this.$store.dispatch('deleteBoard', board)
             }
         },
         components: {

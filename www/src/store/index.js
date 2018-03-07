@@ -20,10 +20,10 @@ vue.use(vuex)
 var store = new vuex.Store({
     state: {
         user: {},
-        board: {},
-        list: {},
-        task: {},
-        comment: {}
+        boards: {},
+        lists: {},
+        tasks: {},
+        comments: {}
 
     },
     mutations: {
@@ -31,17 +31,17 @@ var store = new vuex.Store({
             state.user = user
         },
         // TO ADD ONE NEW BOARD
-        setBoard(state, payload) {
+        addBoard(state, payload) {
             state.boards.unshift(payload)
         },
         //TO SET ALL BOARDS FOR USER
-        setBoards(state, payload) {
+        getBoards(state, payload) {
             state.boards = payload
         },
     },
     actions: {
         //Login and Register actions ===================================================================
-        createBoard({ commit, dispatch }, payload) {
+        addBoard({ commit, dispatch }, payload) {
             api.post("home", payload)
                 .then(results => {
                     commit("setBoard", results.data)

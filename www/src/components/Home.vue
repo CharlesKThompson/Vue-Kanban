@@ -2,10 +2,26 @@
     <div class="home">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-3" v-for="board in boards">
 
+                <!-- CREATE A BOARD FORM -->
+                <div class="col-sm-12">
+                    <form>
+                        <input type="text" name="caption" v-model="board.title" placeholder="Board Title">
+                        <button @click.prevent="addBoard" class="btn btn-lg btn-primary">
+                            <b>Add New Board</b>
+                        </button>
+                    </form>
                 </div>
-                <button type="button" class="btn btn-danger" @click='logout'>Logout</button>
+
+                <!-- LOGOUT BUTTON -->
+                <div>
+                    <button type="button" class="btn btn-danger" @click='logout'>Logout</button>
+                </div>
+
+                <!-- BOARDS WILL DRAW HERE EVENTUALLY -->
+                <div class="col-sm-3" v-for="board in boards">
+                    {{board.title}}
+                </div> 
             </div>
         </div>
     </div>
@@ -20,7 +36,9 @@
             this.$store.dispatch('getBoards')
         },
         data() {
-            return {}
+            return {
+                board: {},
+            }
         },
         components: {
             Navbar,
@@ -31,14 +49,15 @@
                 this.$store.dispatch('getBoards')
             },
             addBoard(board) {
-                this.$store.dispatch('addBoard', board);
+                debugger
+                this.$store.dispatch('addBoard', this.board);
             },
-            removeBoard(board) {
-                this.$store.dispatch('removeBoard', board)
+            deleteBoard(board) {
+                this.$store.dispatch('deleteBoard', board)
             },
-            updateBoard(board) {
-                this.$store.dipatch('updateBoard', board)
-            },
+            // updateBoard(board) {
+            //     this.$store.dipatch('updateBoard', board)
+            // },
             logout() {
                 this.$store.dispatch('logout')
             }
@@ -49,10 +68,11 @@
             },
             user() {
                 return this.$store.state.user
-            },
-            activeBoard() {
-                return this.$store.state.activeBoard
             }
+            // ,
+            // activeBoard() {
+            //     return this.$store.state.activeBoard
+            // }
         }
     }
 </script>
