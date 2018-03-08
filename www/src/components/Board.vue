@@ -30,8 +30,8 @@
             addList(list) {
                 this.$store.dispatch('addList', list)
             },
-            deleteBoard(board) {
-                this.$store.dispatch('deleteBoard', board)
+            removeBoard(board) {
+                this.$store.dispatch('removeBoard', board)
             }
         },
         components: {

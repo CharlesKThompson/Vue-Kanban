@@ -2,26 +2,27 @@
     <div class="home">
         <div class="container-fluid">
             <div class="row">
-
                 <!-- CREATE A BOARD FORM -->
-                <div class="col-sm-12">
-                    <form>
-                        <input type="text" name="caption" v-model="board.title" placeholder="Board Title">
-                        <button @click.prevent="addBoard" class="btn btn-lg btn-primary">
+                <div class="col-sm-6">
+                    <form class="form-inline">
+                        <input type="text" class="form-control" v-model.lazy="board.title" name="title" placeholder="Add a New Board">
+                        <button @click.prevent="addBoard" class="btn btn-primary">
                             <b>Add New Board</b>
                         </button>
+                        <!-- LOGOUT BUTTON -->
+                        <button type="button" class="btn btn-danger" @click='logout'>Logout</button>
                     </form>
                 </div>
-
-                <!-- LOGOUT BUTTON -->
-                <div>
-                    <button type="button" class="btn btn-danger" @click='logout'>Logout</button>
-                </div>
-
-                <!-- BOARDS WILL DRAW HERE EVENTUALLY -->
-                <div class="col-sm-3" v-for="board in boards">
+            </div>
+            <!-- BOARDS DRAW HERE -->
+            <div class="row board-home">
+                <div class="col-sm-3 board-box-home" v-for="board in boards">
                     {{board.title}}
-                </div> 
+                    <!-- DELETE BOARD BUTTON -->
+                    <button class="list-btn trash-board" @click.prevent='removeBoard(board)'>
+                        <img class="trash-board" src="../assets/trash-small.png">
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -49,15 +50,14 @@
                 this.$store.dispatch('getBoards')
             },
             addBoard(board) {
-                debugger
                 this.$store.dispatch('addBoard', this.board);
             },
-            deleteBoard(board) {
-                this.$store.dispatch('deleteBoard', board)
+            removeBoard(board) {
+                this.$store.dispatch('removeBoard', board)
             },
-            // updateBoard(board) {
-            //     this.$store.dipatch('updateBoard', board)
-            // },
+            updateBoard(board) {
+                this.$store.dipatch('updateBoard', board)
+            },
             logout() {
                 this.$store.dispatch('logout')
             }
@@ -81,5 +81,29 @@
 <style scoped>
     .home {
         background-color: aliceblue;
+    }
+
+    .board-box-home {
+        background-color: white;
+        color: black;
+        padding: 1rem;
+        margin: 1rem;
+        outline: black;
+        outline-style: solid;
+        outline-width: 1px;
+
+    }
+
+    .board-home {
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+        min-height: 500px;
+    }
+
+    .trash-board {
+        color: black;
+        background: none;
+        border: none;
     }
 </style>

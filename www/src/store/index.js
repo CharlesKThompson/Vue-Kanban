@@ -55,10 +55,10 @@ var store = new vuex.Store({
                 })
                 .catch(err => { console.log(err) })
         },
-        deleteBoard({ commit, dispatch }, payload) {
+        removeBoard({ commit, dispatch }, payload) {
             api.delete("boards/" + payload._id)
                 .then(result => {
-                    dispatch("getBoards", payload)
+                    dispatch("getBoards")
                 })
         },
         login({ commit, dispatch }, payload) {
