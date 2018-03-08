@@ -4,13 +4,14 @@
             <div class="row">
                 <!-- CREATE A BOARD FORM -->
                 <div class="col-sm-6">
-                    <form class="form-inline">
+                    <form class="form-inline" @submit.prevent="addBoard">
                         <input type="text" class="form-control" v-model="board.title" name="title" placeholder="Add a New Board">
-                        <button @click.prevent="addBoard" class="btn btn-primary">
-                            <b>Add New Board</b>
+                        <button class="btn btn-primary mleft">
+                            Add New Board
                         </button>
+                        <button class="btn btn-warning mleft" type="reset">Reset</button>
                         <!-- LOGOUT BUTTON -->
-                        <button type="button" class="btn btn-danger" @click='logout'>Logout</button>
+                        <button type="button" class="btn btn-danger mleft" @click='logout'>Logout</button>
                     </form>
                 </div>
             </div>
@@ -105,5 +106,8 @@
         color: black;
         background: none;
         border: none;
+    }
+    .mleft {
+        margin-left: .2rem;
     }
 </style>
