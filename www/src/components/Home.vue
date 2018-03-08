@@ -17,8 +17,8 @@
             </div>
             <!-- BOARDS DRAW HERE -->
             <div class="row">
-                <div class="col-sm-3 board-box-home" v-for="board in boards" @click="setActiveBoard(board)">
-                    {{board.title}}
+                <div class="col-sm-3 board-box-home" v-for="board in boards" >
+                    <router-link :to="'/boards/'+ board._id">{{board.title}}</router-link>
                     <!-- DELETE BOARD ICON-BUTTON -->
                     <button class="list-btn trash-board" @click.prevent='removeBoard(board)'>
                         <img class="trash-board" src="../assets/trash-small.png">

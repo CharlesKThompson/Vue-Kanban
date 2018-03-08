@@ -41,15 +41,15 @@
     import List from './List.vue'
     export default {
         name: 'Board',
+        mounted() {
+            this.$store.dispatch('getLists', {_id: this.$route.params.boardId})
+        },
         data() {
             return {
                 list: {},
             }
         },
         // props: ['list'],
-        mounted() {
-            this.$store.dispatch('getLists', list)
-        },
         components: {
             List
         },
@@ -83,8 +83,8 @@
             lists() {
                 return this.$store.state.lists
             },
-            activeList() {
-                return this.$store.state.activeList
+            board() {
+                return this.$store.state.activeBoard
             },
             user() {
                 return this.$store.state.user

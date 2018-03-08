@@ -13,7 +13,7 @@ export default new Router({
             component: Login
         },
         {
-            path: '/board',
+            path: '/boards/:boardId',
             name: 'Board',
             component: Board
         },
