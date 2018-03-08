@@ -74,7 +74,6 @@ var store = new vuex.Store({
             .catch(err => { console.log(err) })
         },
         setActiveBoard({ commit, dispatch }, payload) {
-            debugger
             api.get("boards/" + payload._id)
             .then(result => {
                 commit('setActiveBoard', { id: payload, data: result.data })
@@ -92,13 +91,13 @@ var store = new vuex.Store({
         },
         //LIST ACTIONS
         addList({ commit, dispatch }, payload) {
-            api.post("boards/", payload)
+            api.post('boards/' + payload.boardId + '/lists/', payload)
             .then(results => {
-                dispatch("getLists", results.data)
+                dispatch("getLists", {_id: payload.boardId})
             })
         },
         getLists({ commit, dispatch }, payload) {
-            api.get("boards/" + payload._id + '/lists')
+            api.get('boards/' + payload._id + '/lists/')
             .then(result => {
                 console.log(result)
                 commit("getLists", result.data)

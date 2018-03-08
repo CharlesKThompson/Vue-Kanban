@@ -24,6 +24,7 @@ router.get("/boards/:boardid", (req, res, next) => {
         .catch(next)
 })
 
+//Get all boards
 router.get("/boards", (req, res, next) => {
     Boards.find({creatorId: req.session.uid})
         .then(boards => {
@@ -55,22 +56,39 @@ router.delete("/boards/:boardid", (req, res, next) => {
 })
     
 
-//Create a list
-router.post("/boards/:boardid/lists", (req, res, next) => {
-    req.body.creatorId = req.session.uid
-
-    Lists.create(req.body)
-        .then(list => {
-            res.send(list)
+//Get all lists for board id
+router.get("/boards/:boardid/lists", (req, res, next) => {
+    Lists.find({boardId: req.params.boardid})
+        .then(lists => {
+            return res.send(lists)
         })
         .catch(next)
 })
 
 //Get a list
 router.get("/boards/:boardid/lists/:listid", (req, res, next) => {
+    Lists.findById(req.params.body)
+        .then(list => {
+            return res.send(list)
+        })
+        .catch(next)
+})
+
+//Get all lists
+router.get("/boards/:boardid/lists/", (req, res, next) => {
     Lists.findById(req.params.listid)
         .then(list => {
             return res.send(list)
+        })
+        .catch(next)
+})
+
+// Create a list
+router.post("/boards/:boardid/lists", (req, res, next) => {
+    req.body.creatorId = req.session.uid
+    Lists.create(req.body)
+        .then(list => {
+            res.send(list)
         })
         .catch(next)
 })

@@ -19,7 +19,7 @@
             <!-- LISTS DRAW HERE -->
             <div class="row">
                 <div class="col-sm-3 list-box-list" v-for="list in lists"> 
-                    {{list.title}}
+                    <list :listProp='list'> </list>
                     <!-- DELETE LIST ICON-BUTTON -->
                     <button class="list-btn trash-list" @click.prevent='removeList(list)'>
                         <img class="trash-list" src="../assets/trash-small.png">
@@ -48,7 +48,9 @@
         },
         data() {
             return {
-                list: {},
+                list: {
+                    title: ""
+                },
             }
         },
         // props: ['list'],
@@ -57,7 +59,9 @@
         },
         methods: {
             addList(list) {
-                this.$store.dispatch('addList', list)
+                debugger
+                this.list.boardId = this.board._id
+                this.$store.dispatch('addList', this.list)
             },
             removeList(list) {
                 this.$store.dispatch('removeList', list)
@@ -67,12 +71,6 @@
             },
             setActiveList(list) {
                 this.$store.dispatch('setActiveList', list)
-            },
-            addList(list) {
-                this.$store.dispatch('addList', this.list)
-            },
-            removeList(list) {
-                this.$store.dispatch('removeList', list)
             },
             updateList(list) {
                 this.$store.dipatch('updateList', list)

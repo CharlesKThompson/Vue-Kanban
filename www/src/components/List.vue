@@ -1,6 +1,6 @@
 <template>
     <div class="list">
-
+{{listProp.title}}
     </div>
 </template>
 
@@ -8,9 +8,12 @@
     // import List from './List.vue'
     export default {
         name: 'List',
+        props: ['listProp'],
         data() {
             return {
-
+                task: {
+                    title: ""
+                },
             }
         },
         // props: ['list'],
