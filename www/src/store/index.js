@@ -39,43 +39,88 @@ var store = new vuex.Store({
         getBoards(state, payload) {
             state.boards = payload
         },
+        // TO SET ACTIVE BOARD
         setActiveBoard(state, board) {
             state.activeBoard = board
         },
+        // TO ADD ONE NEW LIST
+        addList(state, payload) {
+            state.lists.unshift(payload)
+        },
+        //TO SET ALL LISTS FOR USER
+        getLists(state, payload) {
+            state.lists = payload
+        },
+        // TO SET ACTIVE LIST
+        setActiveList(state, list) {
+            state.activeList = list
+        },
     },
     actions: {
-        //Login and Register actions ===================================================================
+        //BOARD ACTIONS
         addBoard({ commit, dispatch }, payload) {
             api.post("boards/", payload)
-                .then(results => {
-                    dispatch("getBoards", results.data)
-                })
+            .then(results => {
+                dispatch("getBoards", results.data)
+            })
         },
         getBoards({ commit, dispatch }, payload) {
             api.get("boards/")
-                .then(result => {
-                    console.log(result)
-                    commit("getBoards", result.data)
-                })
-                .catch(err => { console.log(err) })
+            .then(result => {
+                console.log(result)
+                commit("getBoards", result.data)
+            })
+            .catch(err => { console.log(err) })
         },
         setActiveBoard({ commit, dispatch }, payload) {
-            debugger
             api.get("boards/" + payload._id)
-                .then(result => {
-                    commit('setActiveBoard', { id: payload, data: result.data })
-                    router.push({ name: 'Board' })
-                    console.log(result)
-                    commit("setActiveBoard", result.data)
-                })
-                .catch(err => { console.log(err) })
+            .then(result => {
+                commit('setActiveBoard', { id: payload, data: result.data })
+                router.push({ name: 'Board' })
+                console.log(result)
+                commit("setActiveBoard", result.data)
+            })
+            .catch(err => { console.log(err) })
         },
         removeBoard({ commit, dispatch }, payload) {
             api.delete("boards/" + payload._id)
-                .then(result => {
-                    dispatch("getBoards")
-                })
+            .then(result => {
+                dispatch("getBoards")
+            })
         },
+        //LIST ACTIONS
+        addList({ commit, dispatch }, payload) {
+            api.post("boards/", payload)
+            .then(results => {
+                dispatch("getLists", results.data)
+            })
+        },
+        getLists({ commit, dispatch }, payload) {
+            api.get("boards/" + board._id + '/lists/')
+            .then(result => {
+                console.log(result)
+                commit("getLists", result.data)
+            })
+            .catch(err => { console.log(err) })
+        },
+        setActiveList({ commit, dispatch }, payload) {
+            console.log(payload)
+            api.get("boards/" + board._id + '/lists/'  + list._id )
+            .then(result => {
+                commit('setActiveList', { id: payload, data: result.data })
+                router.push({ name: 'List' })
+                console.log(result)
+                commit("setActiveList", result.data)
+            })
+            .catch(err => { console.log(err) })
+        },
+        removeList({ commit, dispatch }, payload) {
+            api.delete("lists/" + payload._id)
+            .then(result => {
+                dispatch("getLists")
+            })
+        },
+        //Login and Register actions ===================================================================
         login({ commit, dispatch }, payload) {
             auth.post('login', payload)
                 .then(user => {
