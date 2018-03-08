@@ -80,7 +80,7 @@ var store = new vuex.Store({
                 commit('setActiveBoard', { id: payload, data: result.data })
                 router.push({ name: 'Board' })
                 console.log(result)
-                commit("setActiveBoard", result.data)
+                commit('setActiveBoard', result.data)
             })
             .catch(err => { console.log(err) })
         },
@@ -98,7 +98,6 @@ var store = new vuex.Store({
             })
         },
         getLists({ commit, dispatch }, payload) {
-            debugger
             api.get("boards/" + payload._id + '/lists')
             .then(result => {
                 console.log(result)

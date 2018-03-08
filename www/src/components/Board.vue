@@ -14,6 +14,7 @@
                         <button class="btn btn-warning mleft" type="reset">Reset</button>
                     </form>
                 </div>
+                <div class="col-sm-6 mtop">{{board.title}}</div>
             </div>
             <!-- LISTS DRAW HERE -->
             <div class="row">
@@ -42,7 +43,8 @@
     export default {
         name: 'Board',
         mounted() {
-            this.$store.dispatch('getLists', {_id: this.$route.params.boardId})
+            this.$store.dispatch('getLists', {_id: this.$route.params.boardId}),
+            this.$store.dispatch('setActiveBoard', {_id: this.$route.params.boardId})
         },
         data() {
             return {
