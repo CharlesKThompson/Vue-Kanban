@@ -17,7 +17,7 @@
             </div>
             <!-- BOARDS DRAW HERE -->
             <div class="row">
-                <div class="col-sm-3 board-box-home" v-for="board in boards">
+                <div class="col-sm-3 board-box-home" v-for="board in boards" @click="setActiveBoard(board)">
                     {{board.title}}
                     <!-- DELETE BOARD ICON-BUTTON -->
                     <button class="list-btn trash-board" @click.prevent='removeBoard(board)'>
@@ -38,7 +38,6 @@
 </template>
 
 <script>
-    import Navbar from './Navbar.vue'
     import Board from './Board.vue'
     export default {
         name: 'Home',
@@ -57,6 +56,9 @@
         methods: {
             getBoards() {
                 this.$store.dispatch('getBoards')
+            },
+            setActiveBoard(board) {
+                this.$store.dispatch('setActiveBoard', board)
             },
             addBoard(board) {
                 this.$store.dispatch('addBoard', this.board)

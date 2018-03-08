@@ -21,6 +21,7 @@ var store = new vuex.Store({
     state: {
         user: {},
         boards: {},
+        activeBoard: {},
         lists: {},
         tasks: {},
         comments: {}
@@ -38,6 +39,9 @@ var store = new vuex.Store({
         getBoards(state, payload) {
             state.boards = payload
         },
+        setActiveBoard(state, board) {
+            state.activeBoard = board
+        },
     },
     actions: {
         //Login and Register actions ===================================================================
@@ -50,8 +54,19 @@ var store = new vuex.Store({
         getBoards({ commit, dispatch }, payload) {
             api.get("boards/")
                 .then(result => {
-                 console.log(result)
+                    console.log(result)
                     commit("getBoards", result.data)
+                })
+                .catch(err => { console.log(err) })
+        },
+        setActiveBoard({ commit, dispatch }, payload) {
+            debugger
+            api.get("boards/" + payload._id)
+                .then(result => {
+                    commit('setActiveBoard', { id: payload, data: result.data })
+                    router.push({ name: 'Board' })
+                    console.log(result)
+                    commit("getBoard", result.data)
                 })
                 .catch(err => { console.log(err) })
         },
