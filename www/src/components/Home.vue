@@ -5,7 +5,7 @@
                 <!-- CREATE A BOARD FORM -->
                 <div class="col-sm-6">
                     <form class="form-inline">
-                        <input type="text" class="form-control" v-model.lazy="board.title" name="title" placeholder="Add a New Board">
+                        <input type="text" class="form-control" v-model="board.title" name="title" placeholder="Add a New Board">
                         <button @click.prevent="addBoard" class="btn btn-primary">
                             <b>Add New Board</b>
                         </button>
