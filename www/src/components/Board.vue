@@ -15,16 +15,16 @@
         },
         // props: ['board'],
         mounted() {
-            this.$store.dispatch('getBoards')
+            // this.$store.dispatch('getLists')
         },
         computed: {
-            lists() {
-                return this.$store.state.lists[this.board._id] || []
-            }
-            // ,
-            // activeBoard() {
-            //     return this.$store.state.activeBoard
+            // lists() {
+            //     return this.$store.state.lists[this.board._id] || {}
             // }
+            // ,
+            activeBoard() {
+                return this.$store.state.activeBoard
+            }
         },
         methods: {
             addList(list) {

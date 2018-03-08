@@ -66,7 +66,7 @@ var store = new vuex.Store({
                     commit('setActiveBoard', { id: payload, data: result.data })
                     router.push({ name: 'Board' })
                     console.log(result)
-                    commit("getBoard", result.data)
+                    commit("setActiveBoard", result.data)
                 })
                 .catch(err => { console.log(err) })
         },

@@ -50,7 +50,6 @@
             }
         },
         components: {
-            Navbar,
             Board
         },
         methods: {
