@@ -50,7 +50,7 @@
                 this.$store.dispatch('getBoards')
             },
             addBoard(board) {
-                this.$store.dispatch('addBoard', this.board);
+                this.$store.dispatch('addBoard', this.board)
             },
             removeBoard(board) {
                 this.$store.dispatch('removeBoard', board)
