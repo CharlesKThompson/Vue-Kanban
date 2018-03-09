@@ -60,6 +60,12 @@ var store = new vuex.Store({
             debugger
             state.tasks.unshift(payload)
         },
+        addComment(state, payload) {
+            state.comments.unshift(payload)
+        },
+        getComments(state, payload) {
+            state.comments = payload
+        }
     },
     actions: {
         //BOARD ACTIONS
@@ -145,6 +151,26 @@ var store = new vuex.Store({
                 })
                 .catch(err => { console.log(err) })
         },
+
+        getComments({ commit, dispatch }, payload) {
+            api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments/')
+                .then(result => {
+                    console.log(result)
+                    commit('getComments', result.data)
+                })
+                .catch(err => { console.log(err) })
+        },
+
+        addComments({ commit, dispatch }, payload) {
+            api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '.comments/', payload)
+                .then(results => {
+                    console.log(results)
+                    dispatch("getComments", { _id: payload.taskId})
+                })
+                .catch(err => (console.log(err)))
+        },
+
+
 
         //Login and Register actions ===================================================================
         login({ commit, dispatch }, payload) {
