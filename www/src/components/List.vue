@@ -31,7 +31,9 @@
             this.$store.dispatch('getLists', {
                     _id: this.$route.params.boardId
                 }),
-                this.$store.dispatch('getTasks', this.task)
+                this.$store.dispatch('getTasks', {
+                    _id: this.$route.params.boardId
+                })
         },
         computed: {
             lists() {
@@ -51,6 +53,10 @@
 
             removeList(list) {
                 this.$store.dispatch('removeList', list)
+            },
+
+            getTask() {
+                this.$store.dispatch('getTasks')
             }
         },
         components: {

@@ -65,6 +65,9 @@ var store = new vuex.Store({
         },
         getComments(state, payload) {
             state.comments = payload
+        },
+        getTasks(state, payload) {
+            state.tasks = payload
         }
     },
     actions: {
@@ -165,7 +168,7 @@ var store = new vuex.Store({
             api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '.comments/', payload)
                 .then(results => {
                     console.log(results)
-                    dispatch("getComments", { _id: payload.taskId})
+                    dispatch("getComments", { _id: payload.taskId })
                 })
                 .catch(err => (console.log(err)))
         },
