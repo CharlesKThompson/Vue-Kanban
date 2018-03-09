@@ -43,8 +43,10 @@
     export default {
         name: 'Board',
         mounted() {
+            this.$store.dispatch('getComments', { _id: this.$route.params.boardId })
             this.$store.dispatch('getLists', {_id: this.$route.params.boardId}),
             this.$store.dispatch('setActiveBoard', {_id: this.$route.params.boardId})
+           
         },
         data() {
             return {
