@@ -59,7 +59,6 @@
         },
         methods: {
             addList(list) {
-                debugger
                 this.list.boardId = this.board._id
                 this.$store.dispatch('addList', this.list)
             },

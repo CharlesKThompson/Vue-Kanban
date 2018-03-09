@@ -88,7 +88,7 @@ router.post("/boards/:boardid/lists", (req, res, next) => {
     req.body.creatorId = req.session.uid
     Lists.create(req.body)
         .then(list => {
-            res.send(list)
+            res.send({ message: "Successfully added list", list })
         })
         .catch(next)
 })
@@ -118,7 +118,6 @@ router.delete("/boards/:boardid/lists/:listid", (req, res, next) => {
 //Create a task
 router.post("/boards/:boardid/lists/:listid/tasks", (req, res, next) => {
     req.body.creatorId = req.session.uid
-
     Tasks.create(req.body)
         .then(task => {
             res.send(task)
