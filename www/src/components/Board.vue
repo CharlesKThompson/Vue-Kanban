@@ -43,8 +43,12 @@
     export default {
         name: 'Board',
         mounted() {
-            this.$store.dispatch('getLists', {_id: this.$route.params.boardId}),
-            this.$store.dispatch('setActiveBoard', {_id: this.$route.params.boardId})
+            this.$store.dispatch('getLists', {
+                    _id: this.$route.params.boardId
+                }),
+                this.$store.dispatch('setActiveBoard', {
+                    _id: this.$route.params.boardId
+                })
         },
         data() {
             return {
@@ -88,7 +92,7 @@
             user() {
                 return this.$store.state.user
             }
-        }    
+        }
     }
 </script>
 
@@ -96,7 +100,7 @@
     .list {
         background-color: rgb(112, 178, 235);
     }
-
+    
     .list-box-list {
         background-color: white;
         color: black;
@@ -105,29 +109,27 @@
         outline: black;
         outline-style: solid;
         outline-width: 1px;
-
     }
-
+    
     .trash-list {
         color: black;
         background: none;
         border: none;
     }
-
+    
     .mleft {
         margin-left: .2rem;
     }
-
+    
     .logout {
         margin-right: 2rem;
     }
-
+    
     .mtop {
         margin-top: 1rem;
     }
-
+    
     .mbottom {
         margin-bottom: 1rem;
     }
-
 </style>

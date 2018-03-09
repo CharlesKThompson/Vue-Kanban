@@ -14,7 +14,7 @@
 </template>
 
 <script>
-    // import List from './List.vue'
+    import Task from '/Task'
     export default {
         name: 'List',
         props: ['listProp'],
@@ -26,18 +26,26 @@
             }
         },
         mounted() {
-            // this.$store.dispatch('getLists')
-            // this.$store.dispatch('getTasks') 
+            this.$store.dispatch('setActiveBoard', {
+                _id: this.$route.params.boardId
+            })
+            this.$store.dispatch('getLists', {
+                    _id: this.$route.params.boardId
+                }),
+                this.$store.dispatch('getTasks', this.task)
         },
         computed: {
             lists() {
                 return this.$store.state.lists[this.list._id] || []
+            },
+            tasks() {
+                return this.$store.state.tasks[this.tasks._id]
             }
         },
         methods: {
             addTask() {
-                    this.task.listId = this.listProp._id
-                    this.task.boardId = this.listProp.boardId
+                this.task.listId = this.listProp._id
+                this.task.boardId = this.listProp.boardId
                 console.log(this.task)
                 this.$store.dispatch('addTask', this.task);
             },
@@ -53,4 +61,5 @@
 </script>
 
 <style>
+
 </style>

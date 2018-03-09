@@ -23,7 +23,6 @@ var store = new vuex.Store({
         boards: {},
         activeBoard: {},
         lists: {},
-        activeList: {},
         tasks: {},
         comments: {}
 
@@ -57,7 +56,7 @@ var store = new vuex.Store({
             state.activeList = list
         },
         // TO ADD ONE NEW TASK
-        add(state, payload) {
+        addTask(state, payload) {
             debugger
             state.tasks.unshift(payload)
         },
@@ -131,12 +130,14 @@ var store = new vuex.Store({
             api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/', payload)
                 .then(results => {
                     console.log(results)
-                    // dispatch("getTasks", {_id: payload.boardId})
+                    dispatch("getTasks", { _id: payload.listId })
                 })
+                .catch(err => { console.log(err) })
         },
 
         // getTasks not written yet
         getTasks({ commit, dispatch }, payload) {
+            debugger
             api.get('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/')
                 .then(result => {
                     console.log(result)
@@ -172,7 +173,7 @@ var store = new vuex.Store({
             auth.delete('logout')
                 .then(res => {
                     commit('setUser', {})
-                    // router.push({ name: 'Login' })
+                        // router.push({ name: 'Login' })
                     console.log(res)
                 })
                 .catch(err => {
