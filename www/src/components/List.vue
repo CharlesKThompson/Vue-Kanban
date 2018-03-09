@@ -14,7 +14,6 @@
 </template>
 
 <script>
-    import Task from '/Task'
     export default {
         name: 'List',
         props: ['listProp'],
