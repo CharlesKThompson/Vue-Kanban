@@ -1,6 +1,15 @@
 <template>
     <div class="list">
 {{listProp.title}}
+<form class="form-inline mtop" @submit.prevent="addTask">
+        <input type="text" class="form-control" v-model="task.title" name="title" placeholder="Add a New Task">
+        <!-- ADD LIST BUTTON -->
+        <button class="btn btn-primary mleft">
+            Add New Task
+        </button>
+        <!-- RESET BUTTON -->
+        <button class="btn btn-warning mleft" type="reset">Reset</button>
+    </form>
     </div>
 </template>
 
@@ -16,7 +25,6 @@
                 },
             }
         },
-        // props: ['list'],
         mounted() {
             // this.$store.dispatch('getLists')
             // this.$store.dispatch('getTasks') 
@@ -28,13 +36,10 @@
         },
         methods: {
             addTask() {
-                let task = {
-                    body: this.task,
-                    listId: this.list._id,
-                    boardId: this.list.boardId
-                }
-                console.log(task)
-                this.$store.dispatch('addTask', task);
+                    this.task.listId = this.listProp._id
+                    this.task.boardId = this.listProp.boardId
+                console.log(this.task)
+                this.$store.dispatch('addTask', this.task);
             },
 
             removeList(list) {

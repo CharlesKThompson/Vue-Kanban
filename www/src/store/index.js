@@ -121,6 +121,25 @@ var store = new vuex.Store({
                 dispatch("getLists")
             })
         },
+        //TASK ACTIONS
+        addTask({ commit, dispatch }, payload) {
+            api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/', payload)
+            .then(results => {
+                console.log(results)
+                // dispatch("getTasks", {_id: payload.boardId})
+            })
+        },
+
+        // getTasks not written yet
+        getTasks({ commit, dispatch }, payload) {
+            api.get('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/')
+            .then(result => {
+                console.log(result)
+                commit("getTasks", result.data)
+            })
+            .catch(err => { console.log(err) })
+        },
+
         //Login and Register actions ===================================================================
         login({ commit, dispatch }, payload) {
             auth.post('login', payload)
