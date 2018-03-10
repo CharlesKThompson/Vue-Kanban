@@ -19,6 +19,7 @@
         props: ['taskProp'],
         mounted() {
             this.$store.dispatch('getComments')
+            
 
         },
         data() {
@@ -45,15 +46,16 @@
 
         computed: {
 
-            tasks() {
-                return this.$store.state.tasks
-            },
-            lists() {
-                return this.$store.state.lists
-            },
-            board() {
-                return this.$store.state.activeBoard
-            },
+            // tasks() {
+            //     return this.$store.state.tasks
+            // },
+            
+            // lists() {
+            //     return this.$store.state.lists
+            // },
+            // board() {
+            //     return this.$store.state.activeBoard
+            // },
             user() {
                 return this.$store.state.user
             }

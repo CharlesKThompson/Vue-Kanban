@@ -49,7 +49,7 @@
                 return this.$store.state.lists[this.list._id] || []
             },
             tasks() {
-                return this.$store.state.tasks[this.tasks._id]
+                return this.$store.state.tasks[this.task._id]
             }
         },
         methods: {

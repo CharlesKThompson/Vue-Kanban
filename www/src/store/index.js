@@ -60,7 +60,6 @@ var store = new vuex.Store({
         },
         // TO ADD ONE NEW TASK
         addTask(state, payload) {
-            debugger
             state.tasks.unshift(payload)
         },
         addComment(state, payload) {
@@ -70,6 +69,7 @@ var store = new vuex.Store({
             state.comments = payload
         },
         getTasks(state, payload) {
+            debugger
             state.tasks[payload.listId] = payload.results
         }
     },
