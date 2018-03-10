@@ -1,5 +1,6 @@
 <template>
     <div class="home">
+        <navbar></navbar>
         <div class="container-fluid">
             <div class="row">
                 <!-- CREATE A BOARD FORM -->
@@ -38,6 +39,7 @@
 </template>
 
 <script>
+    import Navbar from './Navbar.vue'
     import Board from './Board.vue'
     export default {
         name: 'Home',
@@ -50,6 +52,7 @@
             }
         },
         components: {
+            Navbar,
             Board
         },
         methods: {
@@ -90,7 +93,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     .home {
-        background-color: aliceblue;
+        background-color: #bed5e6;
     }
 
     .board-box-home {

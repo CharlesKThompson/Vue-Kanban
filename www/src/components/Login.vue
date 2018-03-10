@@ -1,22 +1,24 @@
 <template>
     <div class="login">
         <navbar></navbar>
-        <div class="row login-credentials">
-            <div class="col-sm-12 login-form">
-                <form @submit.prevent="login">
-                    <input v-model="loginForm.email" type=“text” name=“email” placeholder=email id=“”>
-                    <input v-model="loginForm.password" type=“text” name=“password” placeholder=password id=“”>
-                    <div class="col-sm-12 login-button">
-                        <button type="submit" class="btn btn-success">Login</button>
-                    </div>
-                </form>
+        <div class="login-box">
+            <div class="row login-credentials">
+                <div class="col-sm-12 login-form">
+                    <form @submit.prevent="login">
+                        <input v-model="loginForm.email" type=“text” name=“email” placeholder=email id=“”>
+                        <input v-model="loginForm.password" type=“text” name=“password” placeholder=password id=“”>
+                        <div class="col-sm-12 login-button">
+                            <button type="submit" class="btn btn-success">Login</button>
+                        </div>
+                    </form>
+                </div>
             </div>
+            <button type="button" class="btn btn-success " data-toggle="modal" data-target="#registerModal">
+                Register
+            </button>
         </div>
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#registerModal">
-            Register
-        </button>
 
         <!-- Modal -->
         <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
@@ -82,6 +84,10 @@
     }
 </script>
 
-<style>
+<style scoped>
+    .login-box {
+        padding: 2rem;
+        margin: 2rem;
+    }
 
 </style>

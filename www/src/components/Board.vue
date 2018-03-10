@@ -1,5 +1,6 @@
 <template>
     <div class="list">
+        <navbar></navbar>
         <div class="container-fluid">
             <div class="row">
                 <!-- CREATE A LIST FORM -->
@@ -18,7 +19,7 @@
             </div>
             <!-- LISTS DRAW HERE -->
             <div class="row">
-                <div class="col-sm-3 list-box-list" v-for="list in lists"> 
+                <div class="col-sm-3 list-box-list" v-for="list in lists">
                     <list :listProp='list'> </list>
                     <!-- DELETE LIST ICON-BUTTON -->
                     <button class="list-btn trash-list" @click.prevent='removeList(list)'>
@@ -39,13 +40,14 @@
 </template>
 
 <script>
+    import Navbar from './Navbar.vue'
     import List from './List.vue'
     export default {
         name: 'Board',
         mounted() {
             this.$store.dispatch('getLists', {
-                    _id: this.$route.params.boardId
-                }),
+                _id: this.$route.params.boardId
+            }),
                 this.$store.dispatch('setActiveBoard', {
                     _id: this.$route.params.boardId
                 })
@@ -59,6 +61,7 @@
         },
         // props: ['list'],
         components: {
+            Navbar,
             List
         },
         methods: {
@@ -98,11 +101,11 @@
 
 <style scoped>
     .list {
-        background-color: rgb(112, 178, 235);
+        background-color: #bed5e6;
     }
-    
+
     .list-box-list {
-        background-color: white;
+        background-color: #ffffff;
         color: black;
         padding: 1rem;
         margin: 2rem;
@@ -110,25 +113,25 @@
         outline-style: solid;
         outline-width: 1px;
     }
-    
+
     .trash-list {
         color: black;
         background: none;
         border: none;
     }
-    
+
     .mleft {
         margin-left: .2rem;
     }
-    
+
     .logout {
         margin-right: 2rem;
     }
-    
+
     .mtop {
         margin-top: 1rem;
     }
-    
+
     .mbottom {
         margin-bottom: 1rem;
     }
