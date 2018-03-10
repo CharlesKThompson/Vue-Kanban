@@ -1,7 +1,7 @@
 <template>
 <div class="navbar">    
-    <div class="container-fluid">
-        <img src="../assets/listify-logo-sm.png" alt="Listify"> {{user.name}}
+    <div class="container-fluid listify-nav">
+        <a href="./boards/"><img src="../assets/listify-logo-sm.png" alt="Listify"></a>
     </div>
 </div>
 </template>
@@ -35,5 +35,9 @@
 </script>
 
 <style>
-
+    .listify-nav {
+        background-color: #48a0df;
+        color: black;
+        padding: 1rem;
+    }
 </style>
