@@ -30,7 +30,7 @@
         },
 
         components: {
-            Comment
+            // Comment
         },
 
         methods: {

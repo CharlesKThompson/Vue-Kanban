@@ -12,9 +12,9 @@
         </form>
         <!-- TASKS DRAW HERE -->
         <div>
-            <!-- <div class="col" v-for="task in tasks">
+            <div class="col" v-for="task in tasks">
                 <task :taskProp="task"> </task>
-            </div> -->
+            </div>
         </div>
     </div>
 </template>
