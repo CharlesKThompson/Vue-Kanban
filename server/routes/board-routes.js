@@ -125,11 +125,11 @@ router.post("/boards/:boardid/lists/:listid/tasks", (req, res, next) => {
         .catch(next)
 })
 
-//Get a task
-router.get("/boards/:boardid/lists/:listid/tasks/:taskid", (req, res, next) => {
-    Tasks.findById(req.params.taskid)
-        .then(task => {
-            return res.send(task)
+//Get tasks
+router.get("/boards/:boardid/lists/:listid/tasks/", (req, res, next) => {
+    Tasks.find({listId: req.params.listid})
+        .then(tasks => {
+            return res.send(tasks)
         })
         .catch(next)
 })

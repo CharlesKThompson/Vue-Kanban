@@ -1,19 +1,26 @@
 <template>
     <div class="list">
-{{listProp.title}}
-<form class="form-inline mtop" @submit.prevent="addTask">
-        <input type="text" class="form-control" v-model="task.title" name="title" placeholder="Add a New Task">
-        <!-- ADD LIST BUTTON -->
-        <button class="btn btn-primary mleft">
-            Add New Task
-        </button>
-        <!-- RESET BUTTON -->
-        <button class="btn btn-warning mleft" type="reset">Reset</button>
-    </form>
+        {{listProp.title}}
+        <form class="form-inline mtop" @submit.prevent="addTask">
+            <input type="text" class="form-control" v-model="task.title" name="title" placeholder="Add a New Task">
+            <!-- ADD LIST BUTTON -->
+            <button class="btn btn-primary mleft">
+                Add New Task
+            </button>
+            <!-- RESET BUTTON -->
+            <button class="btn btn-warning mleft" type="reset">Reset</button>
+        </form>
+        <!-- TASKS DRAW HERE -->
+        <div>
+            <!-- <div class="col" v-for="task in tasks">
+                <task :taskProp="task"> </task>
+            </div> -->
+        </div>
     </div>
 </template>
 
 <script>
+    import Task from './Task.vue'
     export default {
         name: 'List',
         props: ['listProp'],
@@ -25,15 +32,17 @@
             }
         },
         mounted() {
-            this.$store.dispatch('setActiveBoard', {
-                _id: this.$route.params.boardId
+            // this.$store.dispatch('setActiveBoard', {
+            //     _id: this.$route.params.boardId
+            // }),
+            //     this.$store.dispatch('getLists', {
+            //         _id: this.$route.params.boardId
+            //     })
+            //     ,
+            this.$store.dispatch('getTasks', {
+                _id: this.$route.params.boardId,
+                listId: this.listProp._id
             })
-            this.$store.dispatch('getLists', {
-                    _id: this.$route.params.boardId
-                }),
-                this.$store.dispatch('getTasks', {
-                    _id: this.$route.params.boardId
-                })
         },
         computed: {
             lists() {
@@ -55,16 +64,15 @@
                 this.$store.dispatch('removeList', list)
             },
 
-            getTask() {
+            getTasks() {
                 this.$store.dispatch('getTasks')
             }
         },
         components: {
-            // List
+           Task
         }
     }
 </script>
 
 <style>
-
 </style>
