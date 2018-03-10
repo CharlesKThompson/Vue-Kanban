@@ -18,7 +18,7 @@
         name: 'Task',
         props: ['taskProp'],
         mounted() {
-            this.$store.dispatch('getComments')
+            // this.$store.dispatch('getComments')
             
 
         },

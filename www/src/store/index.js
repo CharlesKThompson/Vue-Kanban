@@ -139,7 +139,6 @@ var store = new vuex.Store({
         },
         //TASK ACTIONS
         addTask({ commit, dispatch }, payload) {
-            debugger
             api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/', payload)
                 .then(results => {
                     console.log(results)
@@ -150,7 +149,8 @@ var store = new vuex.Store({
 
         // getTasks not written yet
         getTasks({ commit, dispatch }, payload) {
-            api.get('boards/' + payload._id + '/lists/' + payload.listId + '/tasks/')
+            debugger
+            api.get('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/')
             .then(result => {
                     console.log(result)
                     var foundTasks = {

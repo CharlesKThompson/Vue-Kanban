@@ -13,7 +13,7 @@
         <!-- TASKS DRAW HERE -->
         <div>
             <div class="col" v-for="task in tasks">
-                <task :taskProp="task"> </task>
+                <Task :taskProp="task"></Task>
             </div>
         </div>
     </div>
@@ -40,16 +40,13 @@
             //     })
             //     ,
             this.$store.dispatch('getTasks', {
-                _id: this.$route.params.boardId,
+                boardId: this.$route.params.boardId,
                 listId: this.listProp._id
             })
         },
         computed: {
-            lists() {
-                return this.$store.state.lists[this.list._id] || []
-            },
             tasks() {
-                return this.$store.state.tasks[this.task._id]
+                return this.$store.state.tasks[this.listProp._id]
             }
         },
         methods: {
