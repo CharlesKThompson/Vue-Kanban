@@ -167,11 +167,11 @@ router.post("/boards/:boardid/lists/:listid/tasks/:taskid/comments", (req, res, 
         .catch(next)
 })
 
-//Get a comment
-router.get("/boards/:boardid/lists/:listid/tasks/:taskid/comments/:commentid", (req, res, next) => {
-    Comments.findById(req.params.commentid)
-        .then(comment => {
-            return res.send(comment)
+//Get comments
+router.get("/boards/:boardid/lists/:listid/tasks/:taskid/comments/", (req, res, next) => {
+    Comments.find({taskId: req.params.commentid})
+        .then(comments => {
+            return res.send(comments)
         })
         .catch(next)
 })
