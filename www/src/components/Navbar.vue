@@ -22,7 +22,7 @@
         },
         data() {
             return {
-                user: {},
+
             }
         },
         components: {
