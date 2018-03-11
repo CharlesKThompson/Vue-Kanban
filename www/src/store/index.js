@@ -119,39 +119,32 @@ var store = new vuex.Store({
                 })
                 .catch(err => { console.log(err) })
         },
-        // setActiveList({ commit, dispatch }, payload) {
-        //     console.log(payload)
-        //     api.get("boards/" + payload._id + '/lists/' + list._id)
-        //         .then(result => {
-        //             commit('setActiveList', { id: payload, data: result.data })
-        //             router.push({ name: 'List' })
-        //             console.log(result)
-        //             commit("setActiveList", result.data)
-        //         })
-        //         .catch(err => { console.log(err) })
-        // },
+
         removeList({ commit, dispatch }, payload) {
             api.delete("lists/" + payload._id)
                 .then(result => {
                     dispatch("getLists")
                 })
         },
-        //TASK ACTIONS
+
+        //TASK ACTIONS---------------------------------------
+        //ADD TASK
         addTask({ commit, dispatch }, payload) {
             debugger
             api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/', payload)
                 .then(results => {
                     console.log(results)
                     debugger
-                    dispatch("getTasks", {
-                        boardId: this.$route.params.boardId,
-                        listId: this.listProp._id
-                    })
+                    var foundTasks = {
+                        results: results.data,
+                        listId: payload.listId
+                    }
+                    dispatch("getTasks", foundTasks)
                 })
                 .catch(err => { console.log(err) })
         },
 
-        // getTasks not written yet
+        //GET TASKS
         getTasks({ commit, dispatch }, payload) {
             api.get('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/')
             .then(result => { 
