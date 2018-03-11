@@ -51,9 +51,9 @@
             }
         },
         methods: {
-            addTask() {
+            addTask(task) {
+                this.task.boardId = this.$route.params.boardId
                 this.task.listId = this.listProp._id
-                this.task.boardId = this.listProp.boardId
                 console.log(this.task)
                 this.$store.dispatch('addTask', this.task);
             },
