@@ -12,6 +12,7 @@
         </form>
         <!-- TASKS DRAW HERE -->
         <div>
+            <button class="btn btn-success" @click="getTasks(task)">Get Tasks</button>
             <div class="col" v-for="task in tasks">
                 <Task :taskProp="task"></Task>
             </div>
