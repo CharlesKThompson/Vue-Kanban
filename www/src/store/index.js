@@ -138,10 +138,15 @@ var store = new vuex.Store({
         },
         //TASK ACTIONS
         addTask({ commit, dispatch }, payload) {
+            debugger
             api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/', payload)
                 .then(results => {
                     console.log(results)
-                    dispatch("getTasks", { _id: payload.listId })
+                    debugger
+                    dispatch("getTasks", {
+                        boardId: this.$route.params.boardId,
+                        listId: this.listProp._id
+                    })
                 })
                 .catch(err => { console.log(err) })
         },
