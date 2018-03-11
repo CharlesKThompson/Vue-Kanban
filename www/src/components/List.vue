@@ -55,7 +55,7 @@
                 this.task.listId = this.listProp._id
                 this.task.boardId = this.listProp.boardId
                 console.log(this.task)
-                this.$store.dispatch('addTask', task);
+                this.$store.dispatch('addTask', this.task);
             },
 
             removeList(list) {
@@ -63,7 +63,11 @@
             },
 
             getTasks() {
-                this.$store.dispatch('getTasks')
+                
+                this.$store.dispatch('getTasks', {
+                boardId: this.$route.params.boardId,
+                listId: this.listProp._id
+            })
             }
         },
         components: {
