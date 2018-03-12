@@ -1,6 +1,8 @@
 <template>
     <div class="comment">
-        {{commentProp.comment}}
+        comment:<br>
+        {{commentProp.comment}}<br>
+        ---
 
 
 
@@ -24,5 +26,9 @@
 </script>
 
 
-<style>
+<style scoped>
+    .comment {
+        font-style: italic;
+        font-size: .9rem;
+    }
 </style>

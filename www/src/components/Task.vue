@@ -31,7 +31,7 @@
             </div>
             <!-- COMMENTS DRAW HERE -->
             <div class="row" v-for="comment in comments">
-                <div class="col-sm-12" >
+                <div class="col-sm-12">
                     <comment :commentProp='comment'></comment>
                 </div>
             </div>
@@ -105,6 +105,14 @@
         font-weight: 400;
         padding: .5rem;
         text-align: start
+    }
+
+    .task {
+        background-color: #48df96;
+    }
+
+    .comment {
+        background-color: #b8ebd2;
     }
 
     .trash-task {
