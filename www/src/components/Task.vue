@@ -1,21 +1,33 @@
 <template>
     <div class="task">
-        <div class="containter-fluid">
+        <div class="container-fluid">
             <div class="row">
-
-                {{taskProp.title}}
-                <form class="form-inline mtop" @submit.prevent="addComment">
-                    <input type="text" class="form-control" v-model="comment.comment" name="comment" placeholder="Add a New Comment">
-                    <!-- ADD COMMENT BUTTON -->
-                    <button class="btn btn-primary mleft">
-                        Add New Comment
-                    </button>
-                    <!-- RESET BUTTON -->
-                    <button class="btn btn-warning mleft" type="reset">Reset</button>
-                </form>
-                <div class="col" v-for="comment in comments">
-                    <Comment :commentProp="comment"></Comment>
+                <div class="col-sm-12 task-title">
+                    {{taskProp.title}}
                 </div>
+                <form class="form-control mtop" @submit.prevent="addComment">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" v-model="comment.comment" name="comment" placeholder="Add a New Comment">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- ADD COMMENT BUTTON -->
+                            <button class="btn btn-primary btn-sm">
+                                Add New Comment
+                            </button>
+                            <!-- RESET BUTTON -->
+                            <button class="btn btn-warning btn-sm" type="reset">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- COMMENTS DRAW HERE -->
+            <div class="col" v-for="comment in comments">
+                <Comment :commentProp="comment"></Comment>
             </div>
         </div>
     </div>
@@ -74,5 +86,10 @@
     }
 </script>
 
-<style>
+<style scoped>
+    .task-title {
+        font-weight: 400;
+        padding: .5rem;
+        text-align: start
+    }
 </style>

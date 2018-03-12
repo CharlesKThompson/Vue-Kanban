@@ -2,24 +2,34 @@
     <div class="list">
         <div class="container-fluid">
             <div class="row">
-
-                {{listProp.title}}
-                <form class="form-inline mtop" @submit.prevent="addTask">
-                    <input type="text" class="form-control" v-model="task.title" name="title" placeholder="Add a New Task">
-                    <!-- ADD LIST BUTTON -->
-                    <button class="btn btn-primary mleft">
-                        Add New Task
-                    </button>
-                    <!-- RESET BUTTON -->
-                    <button class="btn btn-warning mleft" type="reset">Reset</button>
+                <div class="col-sm-12 list-title">
+                    List Title: {{listProp.title}}
+                </div>
+                <form class="form-control mtop" @submit.prevent="addTask">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="add-new-task" v-model="task.title" name="title" placeholder="Add a New Task">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 task-buttons">
+                            <!-- ADD TASK BUTTON -->
+                            <button class="btn btn-primary btn-sm mleft">
+                                Add New Task
+                            </button>
+                            <!-- RESET BUTTON -->
+                            <button class="btn btn-warning btn-sm" type="reset">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
             <!-- TASKS DRAW HERE -->
-            <div class="row">
-                <div class="col" v-for="task in tasks">
+            <div class="row" v-for="task in tasks">
+                <div class="col-sm-12">
                     <task :taskProp='task'></task>
                 </div>
-                <button class="btn btn-success" @click="getTasks(task)">Get Tasks</button>
             </div>
         </div>
     </div>
@@ -41,14 +51,14 @@
             // this.$store.dispatch('setActiveBoard', {
             //     _id: this.$route.params.boardId
             // }),
-                this.$store.dispatch('getLists', {
-                    _id: this.$route.params.boardId
-                })
-                ,
-            this.$store.dispatch('getTasks', {
-                boardId: this.$route.params.boardId,
-                listId: this.listProp._id
+            this.$store.dispatch('getLists', {
+                _id: this.$route.params.boardId
             })
+                ,
+                this.$store.dispatch('getTasks', {
+                    boardId: this.$route.params.boardId,
+                    listId: this.listProp._id
+                })
         },
         computed: {
             tasks() {
@@ -81,5 +91,20 @@
     }
 </script>
 
-<style>
+<style scoped>
+    .list-title {
+        font-weight: 600;
+        padding: .5rem;
+        text-align: start
+    }
+
+    .mleft {
+        margin-left: .5 rem;
+    }
+
+    .label-task-input {
+        font-size: .8rem;
+        text-align: left;
+
+    }
 </style>
