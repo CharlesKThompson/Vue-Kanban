@@ -1,29 +1,28 @@
 <template>
-<div class = "comment">
-    {{commentProp.comment}}
+    <div class="comment">
+        {{commentProp.comment}}
 
-    
-    
-</div>
+
+
+    </div>
 </template>
 
 
 <script>
-export default {
-    name: 'Comment',
-    props: ['commentProp'],
-   // mounted() {}
-   data() {
-    
-   },
+    export default {
+        name: 'Comment',
+        props: ['commentProp'],
+        data: function () {
+            return {
+                
+            }
+        },
 
 
-}
+    }
 
 </script>
 
 
 <style>
-
-
 </style>

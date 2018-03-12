@@ -169,7 +169,6 @@ var store = new vuex.Store({
         getComments({ commit, dispatch }, payload) {
             api.get('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments/')
                 .then(result => {
-                    console.log(result)
                     var foundComments = {
                         results: result.data,
                         listId: payload.listId,
@@ -183,7 +182,6 @@ var store = new vuex.Store({
         addComment({ commit, dispatch }, payload) {
             api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments/', payload)
                 .then(results => {
-                    debugger
                     console.log(results)
 
                     var foundComments = {
