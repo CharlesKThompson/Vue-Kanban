@@ -187,7 +187,7 @@ router.put("/boards/:boardid/lists/:listid/tasks/:taskid/comments/:commentid", (
 
 //Delete a comment
 router.delete("/boards/:boardid/lists/:listid/tasks/:taskid/comments/:commentid", (req, res, next) => {
-    Comments.findOneAndRemove({ creatorId: req.session.uid, _uid: req.params.commentid })
+    Comments.findByIdAndRemove(req.params.commentid, req.body)
         .then(comment => {
             if (!Comments) {
                 res.status(401).send({ error: "Not authorized to remove comment" })

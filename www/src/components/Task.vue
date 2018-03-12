@@ -33,6 +33,13 @@
             <div class="row" v-for="comment in comments">
                 <div class="col-sm-12">
                     <comment :commentProp='comment'></comment>
+                  
+                    <!-- DELETE COMMENT ICON-BUTTON -->
+                    <button class="comment-btn trash-comment" @click.prevent='removeComment(comment)'>
+                        <img class="trash-comment" src="../assets/trash-small.png">
+                        <p>Delete this comment</p>
+                    </button>
+
                 </div>
             </div>
         </div>
@@ -75,7 +82,7 @@
                 console.log(this.comment)
                 this.$store.dispatch('addComment', this.comment)
             },
-            removeComment() {
+            removeComment(comment) {
                 this.$store.dispatch('removeComment', comment)
             },
             getComments() {
@@ -120,5 +127,13 @@
         background: none;
         border: none;
         font-size: .6rem;
+    }
+
+    .trash-comment {
+        color: black;
+        background: none;
+        border: none;
+        font-size: .6rem;
+        text-align: center;
     }
 </style>
