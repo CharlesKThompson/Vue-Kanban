@@ -30,6 +30,14 @@
                 <div class="col-sm-12">
                     <task :taskProp='task'></task>
                 </div>
+                <!-- DELETE TASK ICON-BUTTON -->
+                <div class="col-sm-12">
+                    <button class="task-btn trash-task" @click.prevent='removeTask(task)'>
+                        <img class="trash-task" src="../assets/trash-small.png">
+                        <p>Delete this task</p>
+                    </button>
+                    <hr>
+                </div>
             </div>
         </div>
     </div>
@@ -40,22 +48,17 @@
     export default {
         name: 'List',
         props: ['listProp'],
-        data() {
-            return {
-                task: {
-                    title: ""
-                },
-            }
-        },
         mounted() {
             this.$store.dispatch('getTasks', {
                 boardId: this.$route.params.boardId,
                 listId: this.listProp._id
             })
         },
-        computed: {
-            tasks() {
-                return this.$store.state.tasks[this.listProp._id]
+        data() {
+            return {
+                task: {
+                    title: ""
+                },
             }
         },
         components: {
@@ -68,19 +71,24 @@
                 console.log(this.task)
                 this.$store.dispatch('addTask', this.task);
             },
-
             removeList(list) {
                 this.$store.dispatch('removeList', list)
             },
-
             getTasks() {
-
                 this.$store.dispatch('getTasks', {
                     boardId: this.$route.params.boardId,
                     listId: this.listProp._id
                 })
+            },
+            removeTask(task) {
+                this.$store.dispatch('removeTask', task)
+            },
+        },
+        computed: {
+            tasks() {
+                return this.$store.state.tasks[this.listProp._id]
             }
-        }
+        },
     }
 </script>
 
@@ -93,6 +101,14 @@
 
     .mleft {
         margin-left: .5 rem;
+    }
+
+    .trash-task {
+        color: black;
+        background: none;
+        border: none;
+        font-size: .6rem;
+        text-align: center;
     }
 
     .label-task-input {

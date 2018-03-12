@@ -3,7 +3,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12 task-title">
-                    {{taskProp.title}}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            Task: {{taskProp.title}}
+                        </div>
+                    </div>
                 </div>
                 <form class="form-control mtop" @submit.prevent="addComment">
                     <div class="row">
@@ -59,6 +63,9 @@
         },
 
         methods: {
+            removeTask(task) {
+                this.$store.dispatch('removeTask', task)
+            },
             addComment(comment) {
                 this.comment.boardId = this.taskProp.boardId
                 this.comment.listId = this.taskProp.listId
@@ -94,5 +101,12 @@
         font-weight: 400;
         padding: .5rem;
         text-align: start
+    }
+
+    .trash-task {
+        color: black;
+        background: none;
+        border: none;
+        font-size: .6rem;
     }
 </style>

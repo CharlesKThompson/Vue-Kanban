@@ -54,10 +54,7 @@ var store = new vuex.Store({
         getLists(state, payload) {
             state.lists = payload
         },
-        // TO SET ACTIVE LIST
-        // setActiveList(state, list) {
-        //     state.activeList = list
-        // },
+
         // TO ADD ONE NEW TASK
         addTask(state, payload) {
             state.tasks.unshift(payload)
@@ -126,13 +123,25 @@ var store = new vuex.Store({
         },
 
         //TASK ACTIONS---------------------------------------
+        //REMOVE TASK
+        removeTask({ commit, dispatch }, payload) {
+            api.delete('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload._id)
+                .then(results => {
+                    console.log(results)
+                    var foundTasks = {
+                        results: results.data,
+                        listId: payload.listId
+                    }
+                    dispatch("getTasks", foundTasks)
+                })
+                .catch(err => { console.log(err) })
+        },
+
         //ADD TASK
         addTask({ commit, dispatch }, payload) {
-            
             api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/', payload)
                 .then(results => {
                     console.log(results)
-
                     var foundTasks = {
                         results: results.data,
                         listId: payload.listId
@@ -145,7 +154,7 @@ var store = new vuex.Store({
         //GET TASKS
         getTasks({ commit, dispatch }, payload) {
             api.get('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/')
-            .then(result => { 
+                .then(result => {
 
                     var foundTasks = {
                         results: result.data,
@@ -214,7 +223,7 @@ var store = new vuex.Store({
             auth.delete('logout')
                 .then(res => {
                     commit('setUser', {})
-                        // router.push({ name: 'Login' })
+                    // router.push({ name: 'Login' })
                     console.log(res)
                 })
                 .catch(err => {

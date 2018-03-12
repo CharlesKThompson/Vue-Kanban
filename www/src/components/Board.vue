@@ -60,7 +60,6 @@
                 },
             }
         },
-        // props: ['list'],
         components: {
             Navbar,
             List
