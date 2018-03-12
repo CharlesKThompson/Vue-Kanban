@@ -104,7 +104,7 @@ router.put("/boards/:boardid/lists/:listid", (req, res, next) => {
 
 //Delete a list
 router.delete("/boards/:boardid/lists/:listid", (req, res, next) => {
-    Lists.findByIdAndRemove({ creatorId: req.session.uid, _uid: req.params.listid })
+    Lists.findByIdAndRemove(req.params.listid, req.body)
         .then(list => {
             if (!Lists) {
                 res.status(401).send({ error: "Not authorized to remove list" })

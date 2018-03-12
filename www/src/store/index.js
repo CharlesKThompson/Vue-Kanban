@@ -118,9 +118,9 @@ var store = new vuex.Store({
         },
 
         removeList({ commit, dispatch }, payload) {
-            api.delete('boards/' + payload.boardId + '/lists/' + payload._id, payload)
+            api.delete('boards/' + payload.boardId + '/lists/' + payload._id)
                 .then(result => {
-                    dispatch("getLists")
+                    dispatch("getLists", { _id: payload.boardId })
                 })
                 .catch(err => { console.log(err) })
         },

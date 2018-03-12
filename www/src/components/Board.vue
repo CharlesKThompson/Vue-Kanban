@@ -24,6 +24,7 @@
                     <!-- DELETE LIST ICON-BUTTON -->
                     <button class="list-btn trash-list" @click.prevent='removeList(list)'>
                         <img class="trash-list" src="../assets/trash-small.png">
+                        <p>Delete this list</p>
                     </button>
                 </div>
             </div>
@@ -118,6 +119,7 @@
         color: black;
         background: none;
         border: none;
+        font-size: .6rem;
     }
 
     .mleft {
