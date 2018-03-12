@@ -2,11 +2,8 @@
 <div class="navbar nopad">    
     <div class="container-fluid listify-nav">
 
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <a href="./boards/"><img src="../assets/listify-logo-sm.png" alt="Listify"></a>
-            </div>
-            <div class="col-md-6">
-                User info here after login
             </div>
 
     </div>

@@ -2,9 +2,9 @@
     <div class="list">
         <navbar></navbar>
         <div class="container-fluid">
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <!-- CREATE A LIST FORM -->
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <form class="form-inline mtop" @submit.prevent="addList">
                         <input type="text" class="form-control" v-model="list.title" name="title" placeholder="Add a New List">
                         <!-- ADD LIST BUTTON -->
@@ -15,10 +15,10 @@
                         <button class="btn btn-warning mleft" type="reset">Reset</button>
                     </form>
                 </div>
-                <div class="col-sm-6 mtop">{{board.title}}</div>
+                <div class="col-sm-4 mtop board-title-text">Board Title: {{board.title}}</div>
             </div>
             <!-- LISTS DRAW HERE -->
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-sm-3 list-box-list" v-for="list in lists">
                     <list :listProp='list'> </list>
                     <!-- DELETE LIST ICON-BUTTON -->
@@ -127,6 +127,10 @@
 
     .logout {
         margin-right: 2rem;
+    }
+    .board-title-text {
+        font-size: 1.25rem;
+        font-weight: 750;
     }
 
     .mtop {
