@@ -165,12 +165,14 @@ var store = new vuex.Store({
                 .catch(err => { console.log(err) })
         },
 
+        //GET COMMENTS
         getComments({ commit, dispatch }, payload) {
             api.get('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments/')
                 .then(result => {
-                     console.log(result)
+                    console.log(result)
                     var foundComments = {
                         results: result.data,
+                        listId: payload.listId,
                         taskId: payload.taskId
                     }
                     commit('getComments', foundComments)
@@ -182,9 +184,9 @@ var store = new vuex.Store({
             api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments/', payload)
                 .then(results => {
                     debugger
-                     console.log(results)
+                    console.log(results)
 
-                     var foundComments = {
+                    var foundComments = {
                         results: results.data,
                         listId: payload.listId,
                         taskId: payload.taskId
