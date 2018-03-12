@@ -145,7 +145,7 @@ router.put("/boards/:boardid/lists/:listid/tasks/:taskid", (req, res, next) => {
 
 //Delete a task
 router.delete("/boards/:boardid/lists/:listid/tasks/:taskid", (req, res, next) => {
-    Tasks.findOneAndRemove({ creatorId: req.session.uid, _uid: req.params.taskid })
+    Tasks.findByIdAndRemove(req.params.taskid, req.body)
         .then(task => {
             if (!Tasks) {
                 res.status(401).send({ error: "Not authorized to remove task" })
