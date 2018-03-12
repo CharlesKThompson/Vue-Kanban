@@ -46,6 +46,7 @@
         mounted() {
             this.$store.dispatch('getComments', {
                 boardId: this.$route.params.boardId,
+                listId: this.$route.params.listId,
                 taskId: this.taskProp._id
             })
         },
@@ -70,6 +71,7 @@
                 this.comment.boardId = this.taskProp.boardId
                 this.comment.listId = this.taskProp.listId
                 this.comment.taskId = this.taskProp._id
+                console.log(this.comment)
                 this.$store.dispatch('addComment', this.comment)
             },
             removeComment() {
@@ -78,6 +80,7 @@
             getComments() {
                 this.$store.dispatch('getComments', {
                     boardId: this.$route.params.boardId,
+                    listId: this.$route.params.listId,
                     taskId: this.taskProp._id
                 })
             },
