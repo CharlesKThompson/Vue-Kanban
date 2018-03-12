@@ -36,6 +36,7 @@
                         <img class="trash-task" src="../assets/trash-small.png">
                         <p>Delete this task</p>
                     </button>
+                    <hr>
                 </div>
             </div>
         </div>

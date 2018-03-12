@@ -125,10 +125,8 @@ var store = new vuex.Store({
         //TASK ACTIONS---------------------------------------
         //REMOVE TASK
         removeTask({ commit, dispatch }, payload) {
-            debugger
             api.delete('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload._id)
                 .then(results => {
-                    debugger
                     console.log(results)
                     var foundTasks = {
                         results: results.data,
