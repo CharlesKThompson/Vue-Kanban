@@ -30,8 +30,10 @@
                 </form>
             </div>
             <!-- COMMENTS DRAW HERE -->
-            <div class="col" v-for="comment in comments">
-                <Comment :commentProp="comment"></Comment>
+            <div class="row" v-for="comment in comments">
+                <div class="col-sm-12" >
+                    <comment :commentProp='comment'></comment>
+                </div>
             </div>
         </div>
     </div>
@@ -43,6 +45,7 @@
         props: ['taskProp'],
         mounted() {
             this.$store.dispatch('getComments', {
+                boardId: this.$route.params.boardId,
                 _id: this.$route.params.boardId
             })
         },
@@ -64,9 +67,9 @@
                 this.$store.dispatch('removeTask', task)
             },
             addComment(comment) {
-                this.comment.taskid = this.taskProp._id
-                this.comment.listid = this.taskProp._id.listProp._id
-                this.comment.boardId = this.taskProp._id.listProp.boardId
+                this.comment.boardId = this.taskProp.boardId
+                this.comment.listId = this.taskProp.listId
+                this.comment.taskId = this.taskProp._id
                 this.$store.dispatch('addComment', this.comment)
             },
             removeComment() {
@@ -75,7 +78,7 @@
             getComments() {
                 this.$store.dispatch('getComments', {
                     boardId: this.$route.params.boardId,
-                    taskid: this.listProp._id
+                    taskid: this.taskProp._id
                 })
             },
         },

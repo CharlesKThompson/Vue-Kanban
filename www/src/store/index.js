@@ -63,7 +63,7 @@ var store = new vuex.Store({
             state.comments.unshift(payload)
         },
         getComments(state, payload) {
-            state.comments[payload.taskId] = payload.results
+            vue.set(state.comments, payload.taskId, payload.results)
         },
         getTasks(state, payload) {
             vue.set(state.tasks, payload.listId, payload.results)
@@ -165,7 +165,7 @@ var store = new vuex.Store({
         getComments({ commit, dispatch }, payload) {
             api.get('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments/')
                 .then(result => {
-                    // console.log(result)
+                     console.log(result)
                     var foundComments = {
                         results: result.data,
                         taskId: payload.taskId
@@ -178,8 +178,15 @@ var store = new vuex.Store({
         addComment({ commit, dispatch }, payload) {
             api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '.comments/', payload)
                 .then(results => {
-                    // console.log(results)
-                    dispatch("getComments", { _id: payload.taskId })
+                    debugger
+                     console.log(results)
+
+                     var foundComments = {
+                        results: results.data,
+                        listId: payload.listId,
+                        taskId: payload.taskId
+                    }
+                    dispatch("getComments", foundComments)
                 })
                 .catch(err => (console.log(err)))
         },

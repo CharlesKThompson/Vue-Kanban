@@ -169,7 +169,7 @@ router.post("/boards/:boardid/lists/:listid/tasks/:taskid/comments", (req, res, 
 
 //Get comments
 router.get("/boards/:boardid/lists/:listid/tasks/:taskid/comments/", (req, res, next) => {
-    Comments.find({taskId: req.params.commentid})
+    Comments.find({taskId: req.params.taskid})
         .then(comments => {
             return res.send(comments)
         })
