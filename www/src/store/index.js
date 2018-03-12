@@ -129,7 +129,12 @@ var store = new vuex.Store({
             api.delete('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload._id)
                 .then(results => {
                     debugger
-                    dispatch("getTasks", { _id: payload.listId })
+                    console.log(results)
+                    var foundTasks = {
+                        results: results.data,
+                        listId: payload.listId
+                    }
+                    dispatch("getTasks", foundTasks)
                 })
                 .catch(err => { console.log(err) })
         },
