@@ -40,6 +40,7 @@
 </template>
 
 <script>
+    import Comment from './Comment.vue'
     export default {
         name: 'Task',
         props: ['taskProp'],
