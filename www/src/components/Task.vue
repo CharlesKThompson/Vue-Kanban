@@ -17,6 +17,16 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
+                            <select v-model='moveTask'>
+                                <option disabled value=''>Move Task to List</option>
+                                <option>Another list</option>
+                                <option>A Sample In Prod list</option>
+                                <option>A third List example</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
                             <!-- ADD COMMENT BUTTON -->
                             <button class="btn btn-primary btn-sm">
                                 Add New Comment
@@ -61,6 +71,9 @@
 
         data() {
             return {
+                moveTask: {
+
+                },
                 comment: {
                     comment: ""
                 }
