@@ -83,7 +83,6 @@ var store = new vuex.Store({
         getBoards({ commit, dispatch }, payload) {
             api.get("boards/")
                 .then(result => {
-                    console.log(result)
                     commit("getBoards", result.data)
                 })
                 .catch(err => { console.log(err) })
@@ -93,7 +92,6 @@ var store = new vuex.Store({
                 .then(result => {
                     commit('setActiveBoard', { id: payload, data: result.data })
                     router.push({ name: 'Board' })
-                    console.log(result)
                     commit('setActiveBoard', result.data)
                 })
                 .catch(err => { console.log(err) })
@@ -114,7 +112,6 @@ var store = new vuex.Store({
         getLists({ commit, dispatch }, payload) {
             api.get('boards/' + payload._id + '/lists/')
                 .then(result => {
-                    console.log(result)
                     commit("getLists", result.data)
                 })
                 .catch(err => { console.log(err) })
@@ -130,11 +127,11 @@ var store = new vuex.Store({
         //TASK ACTIONS---------------------------------------
         //ADD TASK
         addTask({ commit, dispatch }, payload) {
-            debugger
+            
             api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/', payload)
                 .then(results => {
                     console.log(results)
-                    debugger
+                                        
                     var foundTasks = {
                         results: results.data,
                         listId: payload.listId
@@ -148,7 +145,7 @@ var store = new vuex.Store({
         getTasks({ commit, dispatch }, payload) {
             api.get('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/')
             .then(result => { 
-                    console.log(result)
+
                     var foundTasks = {
                         results: result.data,
                         listId: payload.listId
@@ -161,7 +158,7 @@ var store = new vuex.Store({
         getComments({ commit, dispatch }, payload) {
             api.get('boards/' + payload.boardId+ '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments/')
                 .then(result => {
-                    console.log(result)
+                    // console.log(result)
                     var foundComments = {
                         results: result.data,
                         taskId: payload.taskId
@@ -174,7 +171,7 @@ var store = new vuex.Store({
         addComment({ commit, dispatch }, payload) {
             api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '.comments/', payload)
                 .then(results => {
-                    console.log(results)
+                    // console.log(results)
                     dispatch("getComments", { _id: payload.taskId })
                 })
                 .catch(err => (console.log(err)))
