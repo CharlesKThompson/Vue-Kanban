@@ -48,17 +48,10 @@
             }
         },
         mounted() {
-            // this.$store.dispatch('setActiveBoard', {
-            //     _id: this.$route.params.boardId
-            // }),
-            this.$store.dispatch('getLists', {
-                _id: this.$route.params.boardId
+            this.$store.dispatch('getTasks', {
+                boardId: this.$route.params.boardId,
+                listId: this.listProp._id
             })
-                ,
-                this.$store.dispatch('getTasks', {
-                    boardId: this.$route.params.boardId,
-                    listId: this.listProp._id
-                })
         },
         computed: {
             tasks() {

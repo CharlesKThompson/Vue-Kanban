@@ -69,7 +69,7 @@ var store = new vuex.Store({
             state.comments[payload.taskId] = payload.results
         },
         getTasks(state, payload) {
-            state.tasks[payload.listId] = payload.results
+            vue.set(state.tasks, payload.listId, payload.results)
         }
     },
     actions: {
@@ -118,10 +118,11 @@ var store = new vuex.Store({
         },
 
         removeList({ commit, dispatch }, payload) {
-            api.delete("lists/" + payload._id)
+            api.delete('boards/' + payload.boardId + '/lists/' + payload._id, payload)
                 .then(result => {
                     dispatch("getLists")
                 })
+                .catch(err => { console.log(err) })
         },
 
         //TASK ACTIONS---------------------------------------
@@ -131,7 +132,7 @@ var store = new vuex.Store({
             api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/', payload)
                 .then(results => {
                     console.log(results)
-                                        
+
                     var foundTasks = {
                         results: results.data,
                         listId: payload.listId
