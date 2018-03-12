@@ -8,13 +8,13 @@ var baseURL = production ? '//kanbanception.herokuapp.com/' : '//localhost:3000/
 
 var api = axios.create({
     baseURL: baseURL + "api/",
-    timeout: 3000,
+    timeout: 5000,
     withCredentials: true
 });
 
 var auth = axios.create({
     baseURL: baseURL + "auth/",
-    timeout: 3000,
+    timeout: 5000,
     withCredentials: true
 });
 
