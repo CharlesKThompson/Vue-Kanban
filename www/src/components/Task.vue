@@ -8,7 +8,7 @@
                             Task: {{taskProp.title}}
                         </div>
                         <div class="col-sm-12">
-                            <select v-model='taskToMove'>
+                            <select v-model='newListId'>
                                 <option disabled value=''>Move Task to List</option>
                                 <option :value="list._id" v-for="list in lists">{{list.title}}</option>
                             </select>
@@ -75,7 +75,7 @@
 
         data() {
             return {
-                taskToMove: {
+                newListId: {
 
                 },
                 task: {
@@ -96,15 +96,14 @@
                 this.$store.dispatch('removeTask', task)
             },
             moveTask() {
-                this.taskProp.listId = this.taskToMove
-                this.$store.dispatch('moveTask', this.taskProp)
-                console.log("results", this.taskProp)              
-                debugger
-                this.$store.dispatch('getTasks', {
-                    boardId: this.$route.params.boardId,
-                    listId: this.$route.params.listId
-                })
+                var updatedTask = {
+                    listId: this.newListId,
+                    _id: this.taskProp._id,
+                    boardId: this.taskProp.boardId
+                }
 
+                this.$store.dispatch('moveTask', { task: updatedTask, oldListId: this.taskProp.listId })
+                console.log("results", updatedTask)              
             },
             addComment(comment) {
                 this.comment.boardId = this.taskProp.boardId

@@ -141,15 +141,13 @@ var store = new vuex.Store({
 
         //MOVE TASK
         moveTask({ commit, dispatch }, payload) {
-            api.put('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload._id, payload)
+            api.put('boards/' + payload.task.boardId + '/lists/' + payload.task.listId + '/tasks/' + payload.task._id, payload.task)
                 .then(results => {
                     debugger
                     console.log(results)
-                    var foundTasks = {
-                        results: results.data,
-                        listId: payload.listId
-                    }
-                    dispatch("getTasks", foundTasks) 
+
+                    dispatch("getTasks", payload.task)
+                    dispatch("getTasks", { boardId: payload.task.boardId, listId: payload.oldListId }) 
                 })
                 .catch(err => { console.log(err) })
         },
