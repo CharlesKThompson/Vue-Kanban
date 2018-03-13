@@ -7,6 +7,16 @@
                         <div class="col-sm-12">
                             Task: {{taskProp.title}}
                         </div>
+                        <div class="col-sm-12">
+                            <select v-model='taskToMove'>
+                                <option disabled value=''>Move Task to List</option>
+                                <option :value="list._id" v-for="list in lists">{{list.title}}</option>
+                            </select>
+                            <button class="btn btn-primary btn-sm" @click="moveTask">
+                                Go
+                            </button>
+                            <hr>
+                        </div>
                     </div>
                 </div>
                 <form class="form-control mtop" @submit.prevent="addComment">
@@ -17,12 +27,6 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <select v-model='moveTask'>
-                                <option disabled value=''>Move Task to List</option>
-                                <option>Another list</option>
-                                <option>A Sample In Prod list</option>
-                                <option>A third List example</option>
-                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -71,8 +75,11 @@
 
         data() {
             return {
-                moveTask: {
+                taskToMove: {
 
+                },
+                task: {
+                    
                 },
                 comment: {
                     comment: ""
@@ -87,6 +94,12 @@
         methods: {
             removeTask(task) {
                 this.$store.dispatch('removeTask', task)
+            },
+            moveTask() {
+                this.taskProp.listId = this.taskToMove
+                this.$store.dispatch('moveTask', this.taskProp)
+                console.log("results", this.taskProp)
+
             },
             addComment(comment) {
                 this.comment.boardId = this.taskProp.boardId
@@ -111,6 +124,9 @@
 
             comments() {
                 return this.$store.state.comments[this.taskProp._id]
+            },
+            lists() {
+                return this.$store.state.lists
             },
 
             user() {

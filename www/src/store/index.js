@@ -101,7 +101,7 @@ var store = new vuex.Store({
                     dispatch("getBoards")
                 })
         },
-        //LIST ACTIONS
+        //LIST ACTION
         addList({ commit, dispatch }, payload) {
             api.post('boards/' + payload.boardId + '/lists/', payload)
                 .then(results => {
@@ -139,6 +139,24 @@ var store = new vuex.Store({
                 .catch(err => { console.log(err) })
         },
 
+        //MOVE TASK
+        moveTask({ commit, dispatch }, payload) {
+            // var updatedTask = { listId: payload.newListId }
+            debugger
+            api.put('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload._id, payload)
+                .then(results => {
+                    debugger
+                    console.log(results)
+                    var foundTasks = {
+                        results: results.data,
+                        listId: payload.listId
+                    }
+                    dispatch("getTasks", foundTasks) 
+                })
+                .catch(err => { console.log(err) })
+        },
+
+
         //ADD TASK
         addTask({ commit, dispatch }, payload) {
             api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/', payload)
@@ -173,7 +191,7 @@ var store = new vuex.Store({
 
             api.delete('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments/' + payload._id)
                 .then(results => {
-                    console.log(results)        
+                    console.log(results)
                     var foundComments = {
                         results: results.data,
                         listId: payload.listId,
