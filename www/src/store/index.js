@@ -141,8 +141,6 @@ var store = new vuex.Store({
 
         //MOVE TASK
         moveTask({ commit, dispatch }, payload) {
-            // var updatedTask = { listId: payload.newListId }
-            debugger
             api.put('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload._id, payload)
                 .then(results => {
                     debugger

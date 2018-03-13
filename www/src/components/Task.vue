@@ -98,7 +98,12 @@
             moveTask() {
                 this.taskProp.listId = this.taskToMove
                 this.$store.dispatch('moveTask', this.taskProp)
-                console.log("results", this.taskProp)
+                console.log("results", this.taskProp)              
+                debugger
+                this.$store.dispatch('getTasks', {
+                    boardId: this.$route.params.boardId,
+                    listId: this.$route.params.listId
+                })
 
             },
             addComment(comment) {

@@ -79,7 +79,7 @@
                 this.$store.dispatch('setActiveList', list)
             },
             updateList(list) {
-                this.$store.dipatch('updateList', list)
+                this.$store.dispatch('updateList', list)
             },
             logout() {
                 this.$store.dispatch('logout')
