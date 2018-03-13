@@ -1,5 +1,5 @@
 <template>
-<div class="navbar nopad">    
+<div class="navbar">    
     <div class="container-fluid listify-nav">
 
             <div class="col-sm-12">
@@ -44,7 +44,7 @@
         color: black;
         padding: 1rem;
     }
-    .nopad  {
+    .navbar  {
         padding: 0;
     }
 
